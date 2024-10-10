@@ -70,8 +70,8 @@ Experience
     >
       <CanvasRevealEffect
         animationSpeed={index === 0 ? 5.1 : 3} // Example of dynamic animation speed
-        containerClassName={index === 1 ? "bg-pink-900 rounded-3xl overflow-hidden" : "bg-sky-600 rounded-3xl overflow-hidden"}
-        colors={index === 1 ? [[255, 166, 158], [221, 255, 247]] : [[125, 211, 252]]}
+        containerClassName={index === 1 ? "bg-gray-800 rounded-3xl overflow-hidden" : 
+          "bg-gray-800  rounded-3xl overflow-hidden"}
       />
     </Card>
   ))}
@@ -107,7 +107,7 @@ const Card = ({
       style={{
         //   add these two
         //   you can generate the color from here https://cssgradient.io/
-        background: "rgb(4,7,29)",
+        background: "rgb(4,16,29)",
         backgroundColor:
           "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
