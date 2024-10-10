@@ -10,13 +10,13 @@ export default function Project({ title, description, tags, imageUrl }) {
         transition sm:group-even:pl-8 dark:bg-white/10 dark:hover:bg-white/20"
       >
         {/* Eye Icon with Tooltip */}
-        <div className="absolute p-1/2 px-1 rounded-xl border-white border top-2 right-3 ">
+        <div className="absolute p-1/2 px-1 rounded-xl border-white border top-2 right-3  sm:opacity-100 opacity-0">
           <IoMdEye className="text-white" />
           {/* Tooltip */}
           
         </div>
         <div className="opacity-0 group-hover:opacity-100 transition-opacity
-         duration-300 absolute right-28 transform translate-x-1/2 top-2
+         duration-300 absolute sm:right-28 transform translate-x-1/2 sm:top-2 right-24 bottom-[40%]
           mb-2 p-2 bg-black text-white text-xs rounded-md">
             Demos available soon
           </div>
@@ -36,7 +36,15 @@ export default function Project({ title, description, tags, imageUrl }) {
           sm:group-even:right-[initial] group-even:-left-40"
         />
         <div className="pt-4  pb-4 px-5 sm:pl-6 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]">
+          <div className="flex justify-between w-full">
           <h3 className="text-base xs:text-2xl  text-white font-semibold">{title}</h3>
+
+          <div className=" sm:hidden px-1 rounded-xl border-white border py-1">
+          <IoMdEye className="text-white" />
+          {/* Tooltip */}
+          
+        </div>
+          </div>
           <p className="my-2 xs:text-xs text-xs  w-full leading-relaxed text-gray-400 dark:text-white/65">
             {description}
           </p>
