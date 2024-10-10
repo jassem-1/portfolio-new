@@ -1,0 +1,78 @@
+/* ===========================
+ table of contents
+==============================
+1. Left Section
+2. Right Section ==> animation*/
+
+
+
+/* ========================
+    1. Left Section
+=========================== */
+
+/* Neon light animation */
+/* Circular light ball animation */
+.neon-light circle {
+  stroke: #00ff00; /* Green color for the neon light */
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: moveLight 5s linear infinite forwards;
+}
+
+@keyframes moveLight {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+
+
+section.hero .avatar {
+  width: 108px;
+
+  border-radius: 50%;
+  border: 1px solid darkorange;
+  padding: 1px;
+  box-shadow: 2px 2px 40px rgba(203, 200, 200, 0.586) inset;
+}
+
+section.hero h1.title {
+  line-height: 3.3rem;
+  margin: 24px 0;
+  color: var(--title);
+}
+
+section.hero p.sub-title {
+  color: var(--subtitle);
+  line-height: 2.65rem;
+  margin-bottom: 32px;
+}
+
+section.hero .all-icons {
+  font-size: 2.3rem;
+  gap: 1.5rem;
+  color: var(--subtitle);
+}
+
+section.hero .all-icons .icon:hover {
+  font-size: 1.4rem;
+  transition: 0.3s;
+  cursor: pointer;
+  color: var(--icon-hover);
+}
+
+/* ===================================
+    2. Right Section ==> animation
+====================================== */
+section.hero .animation {
+  width: 100%;
+  translate: 100px 55px;
+}
+
+@media (max-width: 1250px) {
+  section.hero .animation {
+    display: none;
+  }
+}
