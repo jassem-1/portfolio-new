@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdEye } from "react-icons/io";
 
 export default function Project({ title, description, tags, imageUrl }) {
   return (
@@ -8,10 +9,21 @@ export default function Project({ title, description, tags, imageUrl }) {
         rounded-lg overflow-hidden sm:pr-8 relative sm:h-[18rem] 
         transition sm:group-even:pl-8 dark:bg-white/10 dark:hover:bg-white/20"
       >
-         <img
+        {/* Eye Icon with Tooltip */}
+        <div className="absolute p-1/2 px-1 rounded-xl border-white border top-2 right-3 ">
+          <IoMdEye className="text-white" />
+          {/* Tooltip */}
+          
+        </div>
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity
+         duration-300 absolute right-28 transform translate-x-1/2 top-2
+          mb-2 p-2 bg-black text-white text-xs rounded-md">
+            Demos available soon
+          </div>
+        <img
           src={imageUrl}
           alt={`Image of ${title}`}
-          className="sm:absolute z-10 sm:top-8 sm:-right-40 sm:w-96 w-[28.25rem]  rounded-lg shadow-2xl
+          className="sm:absolute z-10 sm:top-10 sm:-right-40 sm:w-96 w-[28.25rem]  rounded-lg shadow-2xl
 
         transition 
           sm:group-hover:scale-[1.04]
@@ -39,7 +51,6 @@ export default function Project({ title, description, tags, imageUrl }) {
             ))}
           </ul>
         </div>
-       
       </section>
     </div>
   );
