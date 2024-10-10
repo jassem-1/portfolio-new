@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform, useMotionTemplate, useAnimationFrame } from "framer-motion";
 import { useRef } from "react";
+import { GoDownload } from "react-icons/go";
 
 // MovingBorder Component
 export const MovingBorder = ({
@@ -73,8 +74,10 @@ function NeonButton() {
         </MovingBorder>
 
         {/* Button Text */}
-        <button className="relative z-10 text-[#00ffff] text-lg py-1 px-3 w-full h-full rounded">
-          resume
+        <button className="relative flex  justify-between  items-center  gap-0 z-10 text-[#00ffff] text-lg py-1 px-2 w-full h-full rounded">
+          <span>resume</span> 
+          <GoDownload className="pr-4" />
+ 
         </button>
       </div>
     </div>
