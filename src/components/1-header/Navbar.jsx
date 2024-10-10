@@ -57,7 +57,7 @@ const Navbar = () => {
   return (
     <nav className={`w-full max-w-[300px] sm:max-w-[500px] md:max-w-[600px] z-50 xl:max-w-[800px] flex p-6 rounded-xl 
       justify-between bg-black items-center h-10 fixed transition-transform duration-500
-      ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-[150%] '}
+      ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-[0%] sm:-translate-y-[150%] ' }
       hover:translate-y-0 hover:opacity-100`}
     >
       <div className="flex items-center gap-x-4">

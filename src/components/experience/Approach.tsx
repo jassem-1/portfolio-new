@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MdHomeWork } from "react-icons/md";
+import clickhere from "../../animation/clickhere.json"; // Import the circle animation
 
 import { CanvasRevealEffect } from "./CanvasRevealEffect";
+import Lottie from "lottie-react";
 const experienceData = [
   {
     company: "CHAIN INDUSTRIES",
@@ -48,6 +50,7 @@ const experienceData = [
 ];
 
 const Approach = () => {
+
   return (
     <section className="w-full flex flex-col justify-center items-center py-10">
      <h2 
@@ -153,8 +156,18 @@ const Card = ({
 };
 // add order prop for the Phase number change
 const AceternityIcon = ({ order , position ,company}: { order: string , position:string ,company:string}) => {
+  const lottieRef = useRef();
+
   return (
-    <div className="flex flex-col items-center justify-center gap-10 p-6 rounded-full">
+    <div className="flex flex-col items-center relative  justify-center gap-10 p-6 rounded-full">
+       <Lottie
+              lottieRef={lottieRef}
+              animationData={clickhere} // Use the imported variable here
+              style={{ width: 100, height: 100 }}
+              loop
+              autoplay
+              className="opacity-100 sm:opacity-0 absolute -top-20 opacity-50 -right-14 z-0" // Add absolute positioning and z-index
+            />
 <button className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[4px] bg-gradient-to-r from-[#0d1c494f] via-[#134e4a5b] to-[#60a5fa57] shadow-lg transition-all hover:scale-105">
      
       <span

@@ -13,15 +13,15 @@ export default function Project({ title, description, tags, imageUrl }) {
           alt={`Image of ${title}`}
           className="sm:absolute z-10 sm:top-8 sm:-right-40 sm:w-96 w-[28.25rem]  rounded-lg shadow-2xl
 
-          md:transition 
-          group-hover:scale-[1.04]
-          group-hover:-translate-x-3
-          group-hover:translate-y-3
-          group-hover:-rotate-2
-          group-even:group-hover:translate-x-3
-          group-even:group-hover:translate-y-3
-          group-even:group-hover:rotate-2
-          group-even:right-[initial] group-even:-left-40"
+        transition 
+          sm:group-hover:scale-[1.04]
+          sm:group-hover:-translate-x-3
+          sm:group-hover:translate-y-3
+         sm:group-hover:-rotate-2
+          sm:group-even:group-hover:translate-x-3
+          sm:group-even:group-hover:translate-y-3
+        sm:group-even:group-hover:rotate-2
+          sm:group-even:right-[initial] group-even:-left-40"
         />
         <div className="pt-4  pb-4 px-5 sm:pl-6 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]">
           <h3 className="text-base xs:text-2xl  text-white font-semibold">{title}</h3>

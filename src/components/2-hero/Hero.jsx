@@ -16,9 +16,9 @@ const Hero = () => {
     <section id="up" className="hero flex flex-col items-center min-h-screen pt-4">
       <Navbar />
 
-      <div id="up" className="flex pt-24 z-40">
-        <div className="left-section flex flex-col gap-6 items-start justify-start ">
-          <div className="flex items-end gap-6 mb-4  relative"> {/* Make this relative */}
+      <div id="up" className="flex pt-24 z-40 pl-4">
+        <div className="left-section flex flex-col gap-6 items-start justify-start pt-8 ">
+          <div className="flex items-end gap-6 mb-8  relative"> {/* Make this relative */}
             <Lottie
               lottieRef={lottieRef}
               animationData={circleAnimation} // Use the imported variable here
@@ -43,17 +43,30 @@ const Hero = () => {
             startDelay={500}
           />
 
-          <p className="sub-title text-xl md:text-2xl">
-            I'm Jassem Souey, a passionate fullstack developer specialized in building scalable,
+          <p className="sub-title text-base sm:text-xl md:text-2xl">
+            I'm <span className="text-gray-100 font-semibold">Jassem Souey</span> , a passionate fullstack developer specialized in building scalable,
             user-centric applications, with a focus on frontend development.
           </p>
-
           <div className="all-icons flex">
-            <div className="icon icon-twitter"></div>
-            <div className="icon icon-instagram"></div>
-            <div className="icon icon-github"></div>
-            <div className="icon icon-linkedin"></div>
-          </div>
+  {/* GitHub Icon */}
+  <a
+    href="https://github.com/jassem-1" // Replace with your GitHub URL
+    target="_blank" // Opens link in a new tab
+    rel="noopener noreferrer" // Security measure for external links
+  >
+    <div className="icon-github"></div>
+  </a>
+
+  {/* LinkedIn Icon */}
+  <a
+    href="https://www.linkedin.com/in/jassem-souey-16b951278/" // Replace with your LinkedIn URL
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div className="icon-linkedin"></div>
+  </a>
+</div>
+
         </div>
 
         <div className="right-section animation ">

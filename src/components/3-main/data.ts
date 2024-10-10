@@ -1,14 +1,14 @@
-import blockExplorerImg from "../../src/assets/images/block.png";
-import noMoreWarImg from "../../src/assets/images/nomore.png";
-import rewardFactoryImg from "../../src/assets/images/Capture d’écran 2024-08-20 204208.png";
-import royalEscalierImg from "../../src/assets/images/royal.png";
-import etherscanCloneImg from "../../src/assets/images/ether.png";
-import ecommerceHomeImg from "../../src/assets/images/ecomm.jpg";
-import teamManagementImg from "../../src/assets/images/taskmanager.png";
-import staticCryptoImg from "../../src/assets/images/static.png";
-import eLearningPlatformImg from "../../src/assets/images/lms.png";
-import personalPortfolioImg from "../../src/assets/images/portfolio.png";
-import footballWeeklyImg from "../../src/assets/images/football.jpg";
+import blockExplorerImg from "../../../src/assets/images/block.png";
+import noMoreWarImg from "../../../src/assets/images/nomore.png";
+import rewardFactoryImg from "../../../src/assets/images/Capture d’écran 2024-08-20 204208.png";
+import royalEscalierImg from "../../../src/assets/images/royal.png";
+import etherscanCloneImg from "../../../src/assets/images/ether.png";
+import ecommerceHomeImg from "../../../src/assets/images/ecomm.jpg";
+import teamManagementImg from "../../../src/assets/images/taskmanager.png";
+import staticCryptoImg from "../../../src/assets/images/static.png";
+import eLearningPlatformImg from "../../../src/assets/images/lms.png";
+import personalPortfolioImg from "../../../src/assets/images/portfolio.png";
+import footballWeeklyImg from "../../../src/assets/images/football.jpg";
 
 export const projectsData = [
   {
@@ -23,17 +23,12 @@ export const projectsData = [
     tags: ["React", "Tailwind CSS" ],
     imageUrl: noMoreWarImg,
   },
+  
   {
-    title: "Reward Factory",
-    description: "Frontend for RewardFactory, a crypto platform offering fair draws, NFTs, and real-world rewards, with interactive animations using Framer Motion.",
-    tags: ["Next.js", "Tailwind CSS"],
-    imageUrl: rewardFactoryImg,
-  },
-  {
-    title: "Royal Escalier",
-    description: "A web app for a stairs company showcasing their projects with Framer Motion animations. It includes an admin page for managing projects add, edit, or delete powered by Firebase.",
-    tags: ["React",  "Tailwind CSS","Firebase", "Framer Motion"],
-    imageUrl: royalEscalierImg,
+    title: "Football Weekly",
+    description: "A personal portfolio showcasing projects built with React and Tailwind CSS.",
+    tags: ["React", "Tailwind CSS"],
+    imageUrl: footballWeeklyImg,
   },
   {
     title: "EtherScan Clone",
@@ -41,11 +36,20 @@ export const projectsData = [
     tags: ["Next.js","Chainbase","Moralis","Wagmi","Ethers"],
     imageUrl: etherscanCloneImg,
   },
+
+  
+ 
   {
     title: "Ecommerce Home Page",
     description: "A sleek homepage for an e-commerce site featuring modern animations and sliding carousels, built with Tailwind CSS and Framer Motion for a dynamic user experience.",
     tags: ["React","Tailwind CSS"],
     imageUrl: ecommerceHomeImg,
+  },
+  {
+    title: "Royal Escalier",
+    description: "A web app for a stairs company showcasing their projects with Framer Motion animations. It includes an admin page for managing projects add, edit, or delete powered by Firebase.",
+    tags: ["React",  "Tailwind CSS","Firebase", "Framer Motion"],
+    imageUrl: royalEscalierImg,
   },
   {
     title: "Team Management",

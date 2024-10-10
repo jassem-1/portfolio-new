@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { projectsData } from "../../components/data";
+import { projectsData } from "./data";
 import Project from "../../components/project";
 
 export default function ProjectSection() {
@@ -20,18 +20,18 @@ export default function ProjectSection() {
   return (
     <section
       ref={ref}
-      className="safe-x-padding mt-[38px] overflow-hidden pt-4 lg:min-h-screen pb-4"
+      className="safe-x-padding mt-[38px] overflow-hidden pt-8 lg:min-h-screen pb-4"
     >
       <div className="text-center">
         <h2
-          className={`mb-2 text-5xl font-extrabold lg:text-6xl font-montserrat gradient-text ${
+          className={`mb-3  text-3xl md:text-5xl font-extrabold lg:text-6xl font-montserrat gradient-text ${
             inView ? "animate-fadeIn" : ""
           }`}
         >
           Explore Jassem&apos;s Projects
         </h2>
         <p
-          className={`font-medium text-lg lg:text-2xl text-accent max-w-[730px] mx-auto ${
+          className={`font-medium text-base md:text-lg lg:text-2xl text-accent max-w-[730px] mb-4 mx-auto ${
             inView ? "animate-fadeIn" : ""
           }`}
           style={{ animationDelay: "0.2s" }} // Delayed animation
@@ -67,23 +67,25 @@ export default function ProjectSection() {
         </div>
 
         {/* Show More Button */}
-        {visibleProjects < projectsData.length && (
-          <div className="flex justify-center items-center">
-            <div
-              className="text-center mt-6 border w-40 border-gray-300 rounded-full"
-              style={{
-                animation: "scaleButton 1s ease-in-out infinite",
-              }}
-            >
-              <button
-                onClick={showMoreProjects}
-                className="text-gray-300 text-base py-1 px-3 rounded-full"
-              >
-                Show More
-              </button>
-            </div>
-          </div>
-        )}
+        {/* Show More Button */}
+{visibleProjects < projectsData.length && (
+  <div className="flex justify-center items-center">
+    <div
+      className="text-center mt-6 border w-40 border-gray-200 rounded-full"
+      style={{
+        animation: "scaleUpAndDown 1s ease-in-out infinite", // Apply the scale animation
+      }}
+    >
+      <button
+        onClick={showMoreProjects}
+        className="text-gray-200 text-base py-1 px-3 rounded-full"
+      >
+        Show More
+      </button>
+    </div>
+  </div>
+)}
+
       </div>
     </section>
   );
