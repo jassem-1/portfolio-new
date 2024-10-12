@@ -41,7 +41,7 @@ export default function SectionTechnologyStack() {
     });
 
     return (
-        <section ref={ref} className={`my-[12px] min-h-screen gap-y-20 w-full flex flex-col justify-center items-center relative`}>
+        <section ref={ref} className={`my-[12px] min-h-screen gap-y-20 pt-8 w-full flex flex-col justify-center items-center relative`}>
             <div className='text-center'>
                 <motion.h2 
                     style={{color:"var(--title)"}}
@@ -57,7 +57,7 @@ export default function SectionTechnologyStack() {
                     initial={{ y: 100, opacity: 0 }} 
                     animate={inView ? { y: 0, opacity: 1 } : {}} 
                     transition={{ duration: 0.7 }} 
-                    className={`text-base font-medium md:text-xl lg:text-2xl text-accent max-w-[960px] mx-auto`}
+                    className={`text-base font-medium md:text-lg lg:text-xl text-accent max-w-[960px] mx-auto`}
                 >
                     I am committed to delivering exceptional results for my client. That's why I continuously update and use the best technologies, ensuring not only optimal performance but also beautiful design, intuitive user experience, and robust functionality in my products.
                 </motion.p>
