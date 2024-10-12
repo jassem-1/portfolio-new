@@ -20,7 +20,7 @@ export default function ProjectSection() {
   return (
     <section
       ref={ref}
-      className="safe-x-padding mt-[38px] overflow-hidden pt-8 lg:min-h-screen pb-4"
+      className="safe-x-padding mt-[38px]  overflow-hidden pt-10 lg:min-h-screen pb-4"
     >
       <div className="text-center">
         <h2
@@ -55,13 +55,13 @@ export default function ProjectSection() {
               style={{
                 animation: inView ? `fadeInUp 0.5s ease-in-out ${index * 0.2}s forwards` : "",
               }} // Staggered animation
-            >
-              <Project
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                imageUrl={project.imageUrl}
-              />
+            > <Project
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            imageUrl={project.imageUrl}
+            url={project.url}
+videoUrl={project.videoUrl}          />
             </div>
           ))}
         </div>

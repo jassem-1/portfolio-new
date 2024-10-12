@@ -85,8 +85,8 @@ const Hero = () => {
 
       <a 
         className="mt-6"
-        href="/resume-of-jassem.pdf" // Path to the PDF file
-        download="resume.pdf" // This triggers the file download with a custom file name
+        href="/final-final-resume.pdf" // Path to the PDF file
+        download="jassem-resume.pdf" // This triggers the file download with a custom file name
       >
         <NeonButton />
       </a>
