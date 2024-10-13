@@ -99,7 +99,7 @@ export const projectsData: ProjectData[] = [
 ,
   {
     title: "Personal Portfolio",
-    description: "A personal portfolio showcasing projects built with React and Tailwind CSS.",
+    description: "This site showcases my journey as a web developer, highlighting two years of freelancing, internships, and academic projects.",
     tags: ["React", "Tailwind CSS","Framer Motion"],
     imageUrl: personalPortfolioImg,
     url: "https://jassem-portfolio.netlify.app/", // Add the URL if available
