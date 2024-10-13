@@ -92,7 +92,7 @@ export const projectsData: ProjectData[] = [
   {
     title: "ESPRIT Tech RDI Management System",
     description: "An RDI management system for ESPRIT, built with Spring Boot and React, enabling project tracking, team management, and real-time collaboration, with dynamic reports and a user-friendly interface using Material UI and Tailwind CSS.",
-    tags: ["Spring Boot", "React", "Tailwind CSS", "Material UI", "Recharts"],
+    tags: ["Spring Boot", "React", "Material UI", "Recharts"],
     imageUrl: esprit,
     videoUrl: "https://res.cloudinary.com/dbhrjqj53/video/upload/v1728823338/espritTech_1_scwqk4.mp4", // Cloudinary video if URL is not provided
 }
