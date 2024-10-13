@@ -90,7 +90,7 @@ export const projectsData: ProjectData[] = [
     url: "https://github.com/jassem-1/pcd", // Add the URL if available
   },
   {
-    title: "ESPRIT Tech RDI Management System",
+    title: "ESPRIT  Management System",
     description: "An RDI management system for ESPRIT, built with Spring Boot and React, enabling project tracking, team management, and real-time collaboration, with dynamic reports and a user-friendly interface using Material UI and Tailwind CSS.",
     tags: ["Spring Boot", "React", "Material UI", "Recharts"],
     imageUrl: esprit,
@@ -113,7 +113,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     title: "Reward factrory",
-    description: "A landing page for a crypto-related project.",
+    description: "A landing page for a crypto-related project with complex animations.",
     tags: ["React", "Tailwind CSS"],
     imageUrl: rewardFactoryImg,
     url: "https://rewardfactory.io/", // Add the URL if available
