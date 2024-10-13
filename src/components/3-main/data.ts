@@ -10,7 +10,7 @@ import eLearningPlatformImg from "../../../src/assets/images/lms.png";
 import personalPortfolioImg from "../../../src/assets/images/portfolio.png";
 import footballWeeklyImg from "../../../src/assets/images/football.jpg";
 import imen from "../../../src/assets/images/imen.png";
-
+import esprit from "../../../src/assets/images/esprit.png"
 interface ProjectData {
   title: string;
   description: string;
@@ -69,11 +69,11 @@ export const projectsData: ProjectData[] = [
     url: "https://royal-escaliers-a41fa.web.app/", // Add the URL if available
   },
   {
-    title: "Team Management",
+    title: "Task Management",
     description: "A full-stack team management app built with React, Node.js, and MongoDB.",
     tags: ["React", "Node.js", "MongoDB"],
     imageUrl: teamManagementImg,
-    url: "https://github.com/jassem-1/task-manager-front", // Add the URL if available
+    url: "https://github.com/jassem-1/task-manager-front",
   },
   {
     title: "Static Crypto-Related Interface",
@@ -89,6 +89,14 @@ export const projectsData: ProjectData[] = [
     imageUrl: eLearningPlatformImg,
     url: "https://github.com/jassem-1/pcd", // Add the URL if available
   },
+  {
+    title: "ESPRIT Tech RDI Management System",
+    description: "An RDI management system for ESPRIT, built with Spring Boot and React, enabling project tracking, team management, and real-time collaboration, with dynamic reports and a user-friendly interface using Material UI and Tailwind CSS.",
+    tags: ["Spring Boot", "React", "Tailwind CSS", "Material UI", "Recharts"],
+    imageUrl: esprit,
+    videoUrl: "https://res.cloudinary.com/dbhrjqj53/video/upload/v1728823338/espritTech_1_scwqk4.mp4", // Cloudinary video if URL is not provided
+}
+,
   {
     title: "Personal Portfolio",
     description: "A personal portfolio showcasing projects built with React and Tailwind CSS.",
