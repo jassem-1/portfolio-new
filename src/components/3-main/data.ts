@@ -7,7 +7,7 @@ import ecommerceHomeImg from "../../../src/assets/images/ecomm.jpg";
 import teamManagementImg from "../../../src/assets/images/taskmanager.png";
 import staticCryptoImg from "../../../src/assets/images/static.png";
 import eLearningPlatformImg from "../../../src/assets/images/lms.png";
-import personalPortfolioImg from "../../../src/assets/images/portfolio.png";
+import personalPortfolioImg from "../../../src/assets/images/porftoliojass.png";
 import footballWeeklyImg from "../../../src/assets/images/football.jpg";
 import imen from "../../../src/assets/images/imen.png";
 import esprit from "../../../src/assets/images/esprit.png"
@@ -113,7 +113,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     title: "Reward factrory",
-    description: "A personal portfolio showcasing projects built with React and Tailwind CSS.",
+    description: "A landing page for a crypto-related project.",
     tags: ["React", "Tailwind CSS"],
     imageUrl: rewardFactoryImg,
     url: "https://rewardfactory.io/", // Add the URL if available
