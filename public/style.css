@@ -80,3 +80,8 @@
 .icon-linkedin:before {
   content: "\eac9";
 }
+
+.icon-facebook:before {
+  content: "\f09a"; /* Font Awesome Facebook icon */
+  color:white
+}

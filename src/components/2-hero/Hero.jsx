@@ -8,8 +8,24 @@ import me from "../../assets/images/me.jpg";
 import NeonButton from "../button/MovingBorders";
 import Navbar from "../../components/1-header/Navbar";
 import { ReactTyped } from "react-typed";
+import { FaFacebook } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const Hero = () => {
+  const handleClick = () => {
+    // Check if the user is on a mobile device
+    const isMobile = /Mobi/i.test(navigator.userAgent);
+    const phoneNumber = "+216 55392530";
+
+    if (isMobile) {
+        // For mobile devices, initiate a call
+        window.location.href = `tel:${phoneNumber}`;
+    } else {
+        // For desktop devices, open WhatsApp
+        window.open(`https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`, '_blank');
+    }
+};
   const lottieRef = useRef();
 
   return (
@@ -65,6 +81,27 @@ const Hero = () => {
   >
     <div className="icon-linkedin"></div>
   </a>
+  <a
+    href="https://www.facebook.com/jassem.souey123/" // Replace with your LinkedIn URL
+    target="_blank"
+    rel="noopener noreferrer"
+    
+  > <FaFacebook />
+</a>
+
+
+</div>
+<div className="border border-gray-600 p-2 rounded-full mt-3">
+<a
+        href="#"
+        onClick={handleClick}
+        className="flex gap-2 text-gray-400 items-center border border-gray-200"
+    >
+        <FaPhoneAlt />
+        <span className="text-xl">+216 55392530</span>
+        <FaWhatsapp className="text-xl"/>
+
+    </a>
 </div>
 
         </div>
