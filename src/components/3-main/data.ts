@@ -66,7 +66,7 @@ export const projectsData: ProjectData[] = [
     description: "A web app for a stairs company showcasing their projects with Framer Motion animations. It includes an admin page for managing projects add, edit, or delete powered by Firebase.",
     tags: ["React",  "Tailwind CSS","Firebase", "Framer Motion"],
     imageUrl: royalEscalierImg,
-    url: "https://royal-escaliers-a41fa.web.app/", // Add the URL if available
+    videoUrl: "https://res.cloudinary.com/dbojnwz4o/video/upload/v1733572626/z7ozliuqim0vmemzougv.mp4", // Add the URL if available
   },
   {
     title: "Task Management",
