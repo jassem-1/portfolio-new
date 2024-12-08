@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const FreelancerDashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -24,6 +25,7 @@ const FreelancerDashboard = () => {
       setLoading(false);
     }
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProjects();
@@ -94,11 +96,11 @@ const FreelancerDashboard = () => {
                     </p>
                   </div>
                   <button
-                    onClick={() => console.log("Navigate to project details")}
-                    className="bg-gray-200 text-gray-800 py-1 px-3 rounded-md"
-                  >
-                    View Details
-                  </button>
+  onClick={() => navigate(`/freelancer/project/${project.id}`)} // Navigate to project details page
+  className="bg-gray-200 text-gray-800 py-1 px-3 rounded-md"
+>
+  View Details
+</button>
                 </div>
               </li>
             ))}

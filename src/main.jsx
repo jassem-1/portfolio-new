@@ -7,6 +7,7 @@ import Markitup from './markitup/Markitup';
 import FreelancerDashboard from './markitup/FreelancerDashboard';
 import ClientAccessPage from './markitup/ClientAccessPage';
 import ProjectPage from './markitup/ProjectPage';
+import FreelancerProjectPage from './markitup/FreelancerProjectPage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -17,6 +18,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/markitup/dashboard" element={<FreelancerDashboard />} />
         <Route path="/project/access" element={<ClientAccessPage />} />
         <Route path="/project/:projectID" element={<ProjectPage />} />
+        <Route path="/freelancer/project/:projectID" element={<FreelancerProjectPage />} />
+
 
       </Routes>
     </BrowserRouter>
