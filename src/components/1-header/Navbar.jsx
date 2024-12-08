@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from "../../assets/images/jslogo.png";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [active, setActive] = useState("About");
@@ -13,8 +14,11 @@ const Navbar = () => {
     { id: "projects", title: "Projects" },
     { id: "techstack", title: "TechStack" },
     { id: "experience", title: "Experience" },
-    { id: "contact", title: "Contact" }
+    { id: "contact", title: "Contact" },
+    { id: "markitup", title: "MarkItUp" }, // New Link
   ];
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,15 +45,20 @@ const Navbar = () => {
       clearTimeout(scrollTimeout);
     };
   }, []);
+
   const handleNavClick = (e, title) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    setActive(title); // Set the active link
-    const section = document.getElementById(title === "About" ? "up" : title.toLowerCase());
-    
-    if (section) {
-        const navbarHeight = document.querySelector('nav').offsetHeight; // Get navbar height
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY - navbarHeight; // Calculate adjusted position
-        window.scrollTo({ top: sectionTop, behavior: 'smooth' }); // Smooth scroll to the adjusted position
+    e.preventDefault();
+    setActive(title);
+  
+    if (title === "MarkItUp") {
+      navigate("/markitup");
+    } else {
+      const section = document.getElementById(title === "About" ? "up" : title.toLowerCase());
+      if (section) {
+        const navbarHeight = document.querySelector('nav').offsetHeight;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+      }
     }
   };
   
