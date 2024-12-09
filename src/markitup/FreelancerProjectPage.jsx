@@ -44,7 +44,10 @@ const FreelancerProjectPage = () => {
     try {
       const videosRef = collection(db, `projects/${projectID}/videos`);
       const querySnapshot = await getDocs(videosRef);
-      const videoList = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      const videoList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setVideos(videoList);
     } catch (err) {
       console.error("Error fetching videos:", err);
@@ -70,13 +73,13 @@ const FreelancerProjectPage = () => {
     formData.append("upload_preset", UPLOAD_PRESET);
 
     try {
-        const response = await axios.post(CLOUDINARY_URL, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data", // Ensures the request is correctly formatted
-            },
-          });
-      
-          const videoURL = response.data.secure_url;
+      const response = await axios.post(CLOUDINARY_URL, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const videoURL = response.data.secure_url;
 
       // Save the video URL and metadata in Firestore
       const videosRef = collection(db, `projects/${projectID}/videos`);
@@ -101,12 +104,12 @@ const FreelancerProjectPage = () => {
   if (loading) return <p>Loading project...</p>;
 
   return (
-    <div className="p-6 bg-gray-400 min-h-screen">
+    <div className="p-6 bg-gray-800 text-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6">{project?.name}</h1>
       <p className="mb-4">{project?.description}</p>
 
       {/* Upload Video Form */}
-      <div className="bg-white p-4 shadow-md rounded-md mb-6">
+      <div className="bg-gray-700 p-4 shadow-md rounded-md mb-6">
         <h2 className="text-xl font-semibold mb-4">Upload Video</h2>
         <input
           type="text"
@@ -128,23 +131,25 @@ const FreelancerProjectPage = () => {
         >
           {uploading ? "Uploading..." : "Upload Video"}
         </button>
-
         {uploading && <p>Uploading video...</p>}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
 
       {/* List of Videos */}
-      <div className="bg-gray-400 p-4 shadow-md rounded-md">
+      <div className="bg-gray-700 p-4 shadow-md rounded-md">
         <h2 className="text-xl font-semibold mb-4">Uploaded Videos</h2>
         {videos.length > 0 ? (
           <ul>
             {videos.map((video) => (
               <li key={video.id} className="mb-4">
                 <h3 className="text-lg font-bold">{video.name}</h3>
-                <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                  Watch Video
+                <a
+                  href={`/projects/${projectID}/videos/${video.id}`}
+                  className="text-blue-500 underline"
+                >
+                  View Details
                 </a>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Uploaded on: {video.createdAt?.toDate().toLocaleString()}
                 </p>
               </li>

@@ -4,19 +4,20 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 const ProjectPage = () => {
-  const { projectID } = useParams();
+  const { projectID } = useParams(); // Get the project ID from the URL
   const [project, setProject] = useState(null);
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [showCaptureButton, setShowCaptureButton] = useState(false);
-  const [capturedScreenshots, setCapturedScreenshots] = useState([]);
-  const videoPlayerRef = useRef(null);
-  const canvasRef = useRef(null);
+  const [videos, setVideos] = useState([]); // List of videos
+  const [selectedVideo, setSelectedVideo] = useState(null); // Selected video for playback
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [showCaptureButton, setShowCaptureButton] = useState(false); // Show "Capture and Note" button
+  const [capturedScreenshots, setCapturedScreenshots] = useState([]); // Store captured screenshots
+  const videoPlayerRef = useRef(null); // Reference for the video player
+  const canvasRef = useRef(null); // Reference for the canvas used for capturing screenshots
 
+  // Fetch project details
   useEffect(() => {
     const fetchProject = async () => {
-      setLoading(true);
+      setLoading(true); // Set loading to true while fetching
       try {
         const projectRef = doc(db, "projects", projectID);
         const projectDoc = await getDoc(projectRef);
@@ -29,16 +30,17 @@ const ProjectPage = () => {
       } catch (err) {
         console.error("Error fetching project:", err);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
     fetchProject();
   }, [projectID]);
 
+  // Fetch videos for the project
   useEffect(() => {
     const fetchVideos = async () => {
-      setLoading(true);
+      setLoading(true); // Set loading to true while fetching
       try {
         const videosRef = collection(db, `projects/${projectID}/videos`);
         const videosSnapshot = await getDocs(videosRef);
@@ -52,43 +54,43 @@ const ProjectPage = () => {
       } catch (err) {
         console.error("Error fetching videos:", err);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
     if (project) fetchVideos();
   }, [project]);
 
+  // Handle video selection
   const handleVideoSelect = (video) => {
-    setSelectedVideo(video);
-    setCapturedScreenshots([]);
-    setShowCaptureButton(false);
+    setSelectedVideo(video); // Set the selected video
+    setCapturedScreenshots([]); // Clear previously captured screenshots
+    setShowCaptureButton(false); // Hide the capture button initially
   };
 
+  // Handle video pause
   const handleVideoPause = () => {
-    setShowCaptureButton(true);
+    setShowCaptureButton(true); // Show the "Capture and Note" button when video is paused
   };
 
+  // Capture a screenshot of the current frame
   const captureScreenshot = () => {
     if (!videoPlayerRef.current) return;
 
     const video = videoPlayerRef.current;
     const canvas = canvasRef.current;
 
+    // Set canvas size to match video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    try {
-      const screenshot = canvas.toDataURL("image/png");
-      setCapturedScreenshots((prev) => [...prev, screenshot]);
-      setShowCaptureButton(false);
-    } catch (err) {
-      console.error("Error capturing screenshot:", err);
-      alert("Failed to capture screenshot. Ensure the video source supports CORS.");
-    }
+    // Get the screenshot as a data URL
+    const screenshot = canvas.toDataURL("image/png");
+    setCapturedScreenshots((prev) => [...prev, screenshot]); // Add to the list of screenshots
+    setShowCaptureButton(false); // Hide the capture button
   };
 
   if (loading) return <p className="text-center text-lg text-gray-700">Loading project...</p>;
@@ -132,8 +134,9 @@ const ProjectPage = () => {
               src={selectedVideo.url}
               controls
               crossOrigin="anonymous" // Enable CORS for the video
+
               className="w-full border border-gray-500 rounded"
-              onPause={handleVideoPause}
+              onPause={handleVideoPause} // Trigger capture button on pause
             ></video>
 
             {showCaptureButton && (
@@ -145,8 +148,10 @@ const ProjectPage = () => {
               </button>
             )}
 
+            {/* Hidden Canvas for Capturing Screenshots */}
             <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
 
+            {/* Display Captured Screenshots */}
             {capturedScreenshots.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-lg font-bold mb-4">Captured Screenshots</h3>

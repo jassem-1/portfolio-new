@@ -21,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/freelancer/project/:projectID" element={<FreelancerProjectPage />} />
 
 
+
       </Routes>
     </BrowserRouter>
     
