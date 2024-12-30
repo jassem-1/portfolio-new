@@ -1,9 +1,10 @@
-import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore"; // Firestore functions
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import axios from "axios";
 import React, { useState, useRef, useEffect } from "react";
 import CanvasDraw from "react-canvas-draw";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../firebase";
+import UndoRedo from "./UndoRedo";
 
 function Annotation() {
   const [image, setImage] = useState(null);
@@ -15,7 +16,8 @@ function Annotation() {
   const [shapes, setShapes] = useState([]);
   const canvasRef = useRef(null);
   const [canvasDimensions, setCanvasDimensions] = useState({ width: 0, height: 0 });
-
+  const [undoStack, setUndoStack] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -50,6 +52,43 @@ function Annotation() {
 
   const handleToggleDrawing = () => {
     setIsDrawing(!isDrawing);
+  };
+
+  const handleDrawingStop = () => {
+    if (!canvasRef.current) return;
+
+    // Save the current canvas state to the undo stack
+    const currentState = canvasRef.current.getSaveData();
+    setUndoStack([...undoStack, currentState]);
+    setRedoStack([]); // Clear redo stack when new actions occur
+  };
+
+  const handleUndo = () => {
+    if (undoStack.length === 0 || !canvasRef.current) return;
+
+    const lastState = undoStack[undoStack.length - 1];
+    const updatedUndoStack = undoStack.slice(0, -1);
+    setUndoStack(updatedUndoStack);
+
+    setRedoStack([canvasRef.current.getSaveData(), ...redoStack]); // Save the current state to the redo stack
+
+    if (updatedUndoStack.length > 0) {
+      canvasRef.current.loadSaveData(updatedUndoStack[updatedUndoStack.length - 1]);
+    } else {
+      canvasRef.current.clear(); // If undo stack is empty, clear the canvas
+    }
+  };
+
+  const handleRedo = () => {
+    if (redoStack.length === 0 || !canvasRef.current) return;
+
+    const nextState = redoStack[0];
+    const updatedRedoStack = redoStack.slice(1);
+    setRedoStack(updatedRedoStack);
+
+    setUndoStack([...undoStack, canvasRef.current.getSaveData()]); // Save the current state to the undo stack
+
+    canvasRef.current.loadSaveData(nextState);
   };
 
   const handleDrawingColorChange = (color) => {
@@ -140,13 +179,16 @@ function Annotation() {
       };
     }
   };
-
+  const handleDeleteNote = (index) => {
+    setShapes(shapes.filter((_, i) => i !== index));
+  };
+  
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">Image Drawing App</h1>
 
-      <div className="w-full flex items-start gap-x-6 justify-center bg-white shadow-lg rounded-lg p-20">
-        <div className="mb-4 ">
+      <div className="w-full flex items-start gap-x-6 justify-center bg-white shadow-lg rounded-lg p-6">
+        <div className="mb-4">
           <div className="flex items-center mb-4">
             <button
               onClick={handleToggleDrawing}
@@ -167,7 +209,10 @@ function Annotation() {
             </div>
           </div>
 
-          <div className="relative mb-6 w-full">
+          <div className="relative mb-6 w-full"
+          onClickCapture={handleDrawingStop}
+
+          >
             {image && (
               <CanvasDraw
                 ref={canvasRef}
@@ -190,6 +235,12 @@ function Annotation() {
           >
             Finish Annotating and Save
           </button>
+          <UndoRedo
+            onUndo={handleUndo}
+            onRedo={handleRedo}
+            canUndo={undoStack.length > 0}
+            canRedo={redoStack.length > 0}
+          />
         </div>
 
         <div className="flex flex-col w-1/3 justify-center items-start p-4">
@@ -210,7 +261,7 @@ function Annotation() {
             value={currentNote}
             onChange={(e) => setCurrentNote(e.target.value)}
             placeholder="Add a note"
-            className="w-full p-2 border-2 border-gray-300 rounded-md mb-4"
+            className="w-full p-2 text-black border-2 border-gray-300 rounded-md mb-4"
           />
 
           <button
@@ -221,18 +272,29 @@ function Annotation() {
           </button>
 
           <div className="mt-6 w-full bg-gray-400 p-2 rounded-xl">
-            <h3 className="text-xl font-semibold mb-4">Saved Notes:</h3>
-            <ul className="space-y-4">
-              {shapes.map((shape, index) => (
-                <li key={index} className="p-4 border-2 rounded-lg" style={{ borderColor: shape.color }}>
-                  <div style={{ color: shape.color }}>
-                    <strong>Note {index + 1}: </strong>
-                    {shape.note}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+  <h3 className="text-xl font-semibold mb-4">Saved Notes:</h3>
+  <ul className="space-y-4">
+    {shapes.map((shape, index) => (
+      <li
+        key={index}
+        className="p-4 border-2 rounded-lg flex justify-between items-center"
+        style={{ borderColor: shape.color }}
+      >
+        <div style={{ color: shape.color }}>
+          <strong>Note {index + 1}: </strong>
+          {shape.note}
+        </div>
+        <button
+          onClick={() => handleDeleteNote(index)}
+          className="text-red-500 hover:text-red-700 font-bold px-2"
+        >
+          X
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
         </div>
       </div>
 
@@ -250,4 +312,4 @@ function Annotation() {
   );
 }
 
-export default Annotation
+export default Annotation;
