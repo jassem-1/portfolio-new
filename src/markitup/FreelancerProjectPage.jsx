@@ -144,11 +144,12 @@ const FreelancerProjectPage = () => {
               <li key={video.id} className="mb-4">
                 <h3 className="text-lg font-bold">{video.name}</h3>
                 <a
-                  href={`/projects/${projectID}/videos/${video.id}`}
-                  className="text-blue-500 underline"
-                >
-                  View Details
-                </a>
+  href={`/projects/${projectID}/videos/${video.id}`}
+  className="text-blue-500 underline"
+>
+  View Details
+</a>
+
                 <p className="text-sm text-gray-400">
                   Uploaded on: {video.createdAt?.toDate().toLocaleString()}
                 </p>

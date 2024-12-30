@@ -109,11 +109,27 @@ const ProjectPage = () => {
       console.error("Error uploading screenshot to Cloudinary:", err);
     }
   };
+const handleAnnotate = (image) => {
+  if (!selectedVideo) {
+    console.error("No video selected for annotation.");
+    return;
+  }
 
-  const handleAnnotate = (image) => {
-    // Navigate to the annotation page with the image URL as a query parameter
-    navigate(`/annotate?image=${encodeURIComponent(image)}`);
-  };
+  // Include projectID and videoId in the query parameters
+  const videoId = selectedVideo.id;
+
+  // Ensure projectID is passed correctly
+  if (!projectID) {
+    console.error("No projectID available.");
+    return;
+  }
+
+  window.open(
+    `/annotate?image=${encodeURIComponent(image)}&videoId=${encodeURIComponent(videoId)}&projectID=${encodeURIComponent(projectID)}`,
+    '_blank'
+  );
+};
+
 
   if (loading) return <p className="text-center text-lg text-gray-700">Loading project...</p>;
   if (!project) return <p className="text-center text-red-500">Project not found.</p>;

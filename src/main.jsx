@@ -9,6 +9,8 @@ import ProjectPage from './markitup/ProjectPage';
 import FreelancerProjectPage from './markitup/FreelancerProjectPage';
 import AccessPage from './markitup/Markitup'
 import Annotation from './markitup/Annotation.jsx'
+import AnnotationSuccess from './markitup/AnnotationSuccess.jsx'
+import VideoDetailPage from './markitup/ViewDetailsPage.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -20,7 +22,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/project/:projectID" element={<ProjectPage />} />
         <Route path="/freelancer/project/:projectID" element={<FreelancerProjectPage />} />
         <Route path="/annotate" element={<Annotation />} />
+        <Route
+  path="/projects/:projectID/videos/:videoID"
+  element={<VideoDetailPage />}
+/>
 
+        <Route path="/annotation-success" element={<AnnotationSuccess />} />
 
 
       </Routes>
