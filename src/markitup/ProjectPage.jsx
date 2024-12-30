@@ -1,23 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import axios from "axios";
 
 const ProjectPage = () => {
-  const { projectID } = useParams(); // Get the project ID from the URL
+  const { projectID } = useParams();
   const [project, setProject] = useState(null);
-  const [videos, setVideos] = useState([]); // List of videos
-  const [selectedVideo, setSelectedVideo] = useState(null); // Selected video for playback
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [showCaptureButton, setShowCaptureButton] = useState(false); // Show "Capture and Note" button
-  const [capturedScreenshots, setCapturedScreenshots] = useState([]); // Store captured screenshots
-  const videoPlayerRef = useRef(null); // Reference for the video player
-  const canvasRef = useRef(null); // Reference for the canvas used for capturing screenshots
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showCaptureButton, setShowCaptureButton] = useState(false);
+  const [capturedScreenshots, setCapturedScreenshots] = useState([]);
+  const videoPlayerRef = useRef(null);
+  const canvasRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Fetch project details
   useEffect(() => {
     const fetchProject = async () => {
-      setLoading(true); // Set loading to true while fetching
+      setLoading(true);
       try {
         const projectRef = doc(db, "projects", projectID);
         const projectDoc = await getDoc(projectRef);
@@ -30,17 +31,16 @@ const ProjectPage = () => {
       } catch (err) {
         console.error("Error fetching project:", err);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       }
     };
 
     fetchProject();
   }, [projectID]);
 
-  // Fetch videos for the project
   useEffect(() => {
     const fetchVideos = async () => {
-      setLoading(true); // Set loading to true while fetching
+      setLoading(true);
       try {
         const videosRef = collection(db, `projects/${projectID}/videos`);
         const videosSnapshot = await getDocs(videosRef);
@@ -54,43 +54,65 @@ const ProjectPage = () => {
       } catch (err) {
         console.error("Error fetching videos:", err);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       }
     };
 
     if (project) fetchVideos();
   }, [project]);
 
-  // Handle video selection
   const handleVideoSelect = (video) => {
-    setSelectedVideo(video); // Set the selected video
-    setCapturedScreenshots([]); // Clear previously captured screenshots
-    setShowCaptureButton(false); // Hide the capture button initially
+    setSelectedVideo(video);
+    setCapturedScreenshots([]);
+    setShowCaptureButton(false);
   };
 
-  // Handle video pause
   const handleVideoPause = () => {
-    setShowCaptureButton(true); // Show the "Capture and Note" button when video is paused
+    setShowCaptureButton(true);
   };
 
-  // Capture a screenshot of the current frame
-  const captureScreenshot = () => {
+  const captureScreenshot = async () => {
     if (!videoPlayerRef.current) return;
-
+  
     const video = videoPlayerRef.current;
     const canvas = canvasRef.current;
-
-    // Set canvas size to match video
+  
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
+  
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    // Get the screenshot as a data URL
+  
     const screenshot = canvas.toDataURL("image/png");
-    setCapturedScreenshots((prev) => [...prev, screenshot]); // Add to the list of screenshots
-    setShowCaptureButton(false); // Hide the capture button
+  
+    try {
+      const blob = await (await fetch(screenshot)).blob();
+  
+      // Prepare the form data
+      const formData = new FormData();
+      formData.append("file", blob);
+      formData.append('upload_preset', 'portfolio-projects'); // Replace with your Cloudinary upload preset
+      formData.append("folder", "project_screenshots"); // Optional: Specify a folder in Cloudinary
+  
+      // Upload to Cloudinary
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/dbhrjqj53/image/upload`, // Replace `your_cloud_name`
+        formData
+      );
+  
+      const uploadedImageUrl = response.data.secure_url;
+  
+      // Add to the captured screenshots
+      setCapturedScreenshots((prev) => [...prev, uploadedImageUrl]);
+      setShowCaptureButton(false);
+    } catch (err) {
+      console.error("Error uploading screenshot to Cloudinary:", err);
+    }
+  };
+
+  const handleAnnotate = (image) => {
+    // Navigate to the annotation page with the image URL as a query parameter
+    navigate(`/annotate?image=${encodeURIComponent(image)}`);
   };
 
   if (loading) return <p className="text-center text-lg text-gray-700">Loading project...</p>;
@@ -133,10 +155,9 @@ const ProjectPage = () => {
               ref={videoPlayerRef}
               src={selectedVideo.url}
               controls
-              crossOrigin="anonymous" // Enable CORS for the video
-
+              crossOrigin="anonymous"
               className="w-full border border-gray-500 rounded"
-              onPause={handleVideoPause} // Trigger capture button on pause
+              onPause={handleVideoPause}
             ></video>
 
             {showCaptureButton && (
@@ -148,21 +169,26 @@ const ProjectPage = () => {
               </button>
             )}
 
-            {/* Hidden Canvas for Capturing Screenshots */}
             <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
 
-            {/* Display Captured Screenshots */}
             {capturedScreenshots.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-lg font-bold mb-4">Captured Screenshots</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {capturedScreenshots.map((screenshot, index) => (
-                    <img
-                      key={index}
-                      src={screenshot}
-                      alt={`Screenshot ${index + 1}`}
-                      className="border border-gray-500 rounded w-full"
-                    />
+                    <div key={index} className="flex flex-col items-center">
+                      <img
+                        src={screenshot}
+                        alt={`Screenshot ${index + 1}`}
+                        className="border border-gray-500 rounded w-full"
+                      />
+                      <button
+                        onClick={() => handleAnnotate(screenshot)}
+                        className="bg-yellow-500 text-white px-4 py-2 rounded mt-2"
+                      >
+                        Annotate
+                      </button>
+                    </div>
                   ))}
                 </div>
               </div>
