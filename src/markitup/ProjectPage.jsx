@@ -12,6 +12,7 @@ const ProjectPage = () => {
   const [loading, setLoading] = useState(true);
   const [showCaptureButton, setShowCaptureButton] = useState(false);
   const [capturedScreenshots, setCapturedScreenshots] = useState([]);
+  const [isCapturing, setIsCapturing] = useState(false); // New state for loader
   const videoPlayerRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
@@ -74,6 +75,8 @@ const ProjectPage = () => {
   const captureScreenshot = async () => {
     if (!videoPlayerRef.current) return;
 
+    setIsCapturing(true); // Start loader
+
     const video = videoPlayerRef.current;
     const canvas = canvasRef.current;
 
@@ -104,6 +107,8 @@ const ProjectPage = () => {
       setShowCaptureButton(false);
     } catch (err) {
       console.error("Error uploading screenshot to Cloudinary:", err);
+    } finally {
+      setIsCapturing(false); // Stop loader
     }
   };
 
@@ -187,8 +192,11 @@ const ProjectPage = () => {
             {showCaptureButton && (
               <button
                 onClick={captureScreenshot}
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition duration-300"
+                className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition duration-300 flex items-center justify-center gap-2"
               >
+                {isCapturing ? (
+                  <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-white border-opacity-75"></span>
+                ) : null}
                 Capture and Note
               </button>
             )}
@@ -223,5 +231,4 @@ const ProjectPage = () => {
     </div>
   );
 };
-
 export default ProjectPage;
