@@ -11,6 +11,7 @@ import { ReactTyped } from "react-typed";
 import { FaFacebook } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
+import GitHubContributions from "./Github";
 
 const Hero = () => {
   const handleClick = () => {
@@ -121,12 +122,13 @@ const Hero = () => {
       </div>
 
       <a 
-        className="mt-6"
+        className="mt-2"
         href="/cv-developer.pdf" // Path to the PDF file
         download="jassem-resume.pdf" // This triggers the file download with a custom file name
       >
         <NeonButton />
       </a>
+      <GitHubContributions />
     </section>
   );
 };
