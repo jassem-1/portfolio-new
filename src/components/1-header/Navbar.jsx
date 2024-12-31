@@ -64,22 +64,30 @@ const Navbar = () => {
   
 
   return (
-    <nav className={`w-full max-w-[300px] sm:max-w-[500px] md:max-w-[600px] z-50 xl:max-w-[800px] flex p-6 rounded-xl 
+    <nav className={`w-full max-w-[300px] sm:max-w-[500px] md:max-w-[700px] z-50 xl:max-w-[850px] flex p-6 rounded-xl 
       justify-between bg-black items-center h-10 fixed transition-transform duration-500
       hover:translate-y-0 hover:opacity-100`}
     >
       <div className="flex items-center gap-x-4">
         <ul className="list-none md:flex hidden justify-end items-center flex-1">
           {navLinks.map((nav, index) => (
-            <li
-              key={nav.id}
-              className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                active === nav.title ? "text-white" : "text-gray-400"
-              } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-              onClick={(e) => handleNavClick(e, nav.title)} // Update onClick handler
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
+          <li
+          key={nav.id}
+          className={`font-poppins font-normal cursor-pointer md:text-sm xl:text-[16px] relative ${
+            active === nav.title ? "text-white" : "text-gray-400"
+          } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+          onClick={(e) => handleNavClick(e, nav.title)} // Update onClick handler
+        >
+          <a href={`#${nav.id}`} className="flex items-center">
+            {nav.title}
+            {nav.title === "MarkItUp" && (
+              <span className="ml-2 text-xs text-white bg-red-500 px-2 py-1 rounded-full uppercase">
+                New
+              </span>
+            )}
+          </a>
+        </li>
+        
           ))}
         </ul>
       </div>

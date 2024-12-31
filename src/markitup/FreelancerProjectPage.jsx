@@ -104,60 +104,59 @@ const FreelancerProjectPage = () => {
   if (loading) return <p>Loading project...</p>;
 
   return (
-    <div className="p-6 bg-gray-800 text-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">{project?.name}</h1>
-      <p className="mb-4">{project?.description}</p>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-6">{project?.name}</h1>
+      <p className="text-lg text-gray-600 mb-8">{project?.description}</p>
 
       {/* Upload Video Form */}
-      <div className="bg-gray-700 p-4 shadow-md rounded-md mb-6">
-        <h2 className="text-xl font-semibold mb-4">Upload Video</h2>
+      <div className="bg-white p-6 shadow-lg rounded-lg mb-8">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">Upload Video</h2>
         <input
           type="text"
           placeholder="Video Name"
           value={videoName}
           onChange={(e) => setVideoName(e.target.value)}
-          className="w-full text-black mb-4 p-2 border border-gray-300 rounded-md"
+          className="w-full mb-4 p-3 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="file"
           onChange={(e) => setFile(e.target.files[0])}
-          className="w-full mb-4 p-2 border border-gray-300 rounded-md"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           accept="video/*"
         />
         <button
           onClick={uploadVideo}
-          className="bg-blue-500 text-white py-2 px-4 rounded-md"
+          className=" bg-blue-500 text-white px-3 py-3 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
           disabled={uploading}
         >
           {uploading ? "Uploading..." : "Upload Video"}
         </button>
-        {uploading && <p>Uploading video...</p>}
+        {uploading && <p className="text-blue-500 mt-4">Uploading video...</p>}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
 
       {/* List of Videos */}
-      <div className="bg-gray-700 p-4 shadow-md rounded-md">
-        <h2 className="text-xl font-semibold mb-4">Uploaded Videos</h2>
+      <div className="bg-white p-6 shadow-lg rounded-lg">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">Uploaded Videos</h2>
         {videos.length > 0 ? (
-          <ul>
+          <ul className="space-y-4">
             {videos.map((video) => (
-              <li key={video.id} className="mb-4">
-                <h3 className="text-lg font-bold">{video.name}</h3>
+              <li key={video.id} className="p-4 border border-gray-200 rounded-lg">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">{video.name}</h3>
                 <a
   href={`/projects/${projectID}/videos/${video.id}`}
-  className="text-blue-500 underline"
+  className="bg-blue-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-600 transition duration-300 inline-block"
 >
   View Details
 </a>
-
-                <p className="text-sm text-gray-400">
-                  Uploaded on: {video.createdAt?.toDate().toLocaleString()}
+                <p className="text-sm text-gray-500 mt-2">
+                  Uploaded on: {new Date(video.createdAt.seconds * 1000).toLocaleString()}
                 </p>
               </li>
             ))}
           </ul>
         ) : (
-          <p>No videos uploaded yet.</p>
+          <p className="text-gray-500">No videos uploaded yet.</p>
         )}
       </div>
     </div>

@@ -51,62 +51,60 @@ const FreelancerDashboard = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Freelancer Dashboard</h1>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Freelancer Dashboard</h1>
 
       {/* Create New Project Form */}
-      <div className="bg-gray-500 p-4 shadow-md rounded-md mb-6">
-        <h2 className="text-xl text-black font-semibold mb-4">Create New Project</h2>
+      <div className="bg-white p-6 shadow-lg rounded-lg mb-8">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-6">Create New Project</h2>
         <input
           type="text"
           placeholder="Project Name"
           value={newProjectName}
           onChange={(e) => setNewProjectName(e.target.value)}
-          className="w-full text-black  mb-4 p-2 border border-gray-300 rounded-md"
+          className="w-full mb-4 p-3 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <textarea
           placeholder="Project Description"
           value={newProjectDescription}
           onChange={(e) => setNewProjectDescription(e.target.value)}
-          className="w-full text-black  mb-4 p-2 border border-gray-300 rounded-md"
+          className="w-full mb-4 p-3 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button
           onClick={createProject}
-          className="bg-blue-500 text-white py-2 px-4 rounded-md"
+          className=" bg-blue-500  text-white px-2 py-3 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
         >
           Create Project
         </button>
       </div>
 
       {/* List of Projects */}
-      <div className="bg-gray-400 p-4 shadow-md rounded-md">
-        <h2 className="text-xl font-semibold mb-4">Projects</h2>
+      <div className="bg-white p-6 shadow-lg rounded-lg">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-6">Projects</h2>
         {loading ? (
-          <p>Loading projects...</p>
+          <p className="text-gray-500">Loading projects...</p>
         ) : projects.length > 0 ? (
-          <ul>
+          <ul className="space-y-4">
             {projects.map((project) => (
-              <li key={project.id} className="mb-4">
+              <li key={project.id} className="p-4 border border-gray-200 rounded-lg">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h3 className="text-lg font-bold">{project.name}</h3>
-                    <p>{project.description}</p>
-                    <p className="text-sm text-gray-500">
-                      Access Code: {project.accessCode}
-                    </p>
+                    <h3 className="text-lg font-bold text-gray-800">{project.name}</h3>
+                    <p className="text-gray-600">{project.description}</p>
+                    <p className="text-sm text-gray-500 mt-2">Access Code: {project.accessCode}</p>
                   </div>
                   <button
-  onClick={() => navigate(`/freelancer/project/${project.id}`)} // Navigate to project details page
-  className="bg-gray-200 text-gray-800 py-1 px-3 rounded-md"
->
-  View Details
-</button>
+                    onClick={() => navigate(`/freelancer/project/${project.id}`)}
+                    className="bg-blue-100 text-blue-600 py-2 px-4 rounded-lg font-medium hover:bg-blue-200 transition duration-300"
+                  >
+                    View Details
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p>No projects found.</p>
+          <p className="text-gray-500">No projects found.</p>
         )}
       </div>
     </div>

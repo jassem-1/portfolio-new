@@ -5,6 +5,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../firebase";
 import UndoRedo from "./UndoRedo";
+import { RxCross2 } from "react-icons/rx";
 
 function Annotation() {
   const [image, setImage] = useState(null);
@@ -15,7 +16,10 @@ function Annotation() {
   const [currentNote, setCurrentNote] = useState("");
   const [shapes, setShapes] = useState([]);
   const canvasRef = useRef(null);
-  const [canvasDimensions, setCanvasDimensions] = useState({ width: 0, height: 0 });
+  const [canvasDimensions, setCanvasDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
   const location = useLocation();
@@ -73,7 +77,9 @@ function Annotation() {
     setRedoStack([canvasRef.current.getSaveData(), ...redoStack]); // Save the current state to the redo stack
 
     if (updatedUndoStack.length > 0) {
-      canvasRef.current.loadSaveData(updatedUndoStack[updatedUndoStack.length - 1]);
+      canvasRef.current.loadSaveData(
+        updatedUndoStack[updatedUndoStack.length - 1]
+      );
     } else {
       canvasRef.current.clear(); // If undo stack is empty, clear the canvas
     }
@@ -117,7 +123,13 @@ function Annotation() {
       img.crossOrigin = "anonymous";
       img.src = image; // Use the original image URL for the canvas background
       img.onload = async () => {
-        ctx.drawImage(img, 0, 0, canvasDimensions.width, canvasDimensions.height);
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          canvasDimensions.width,
+          canvasDimensions.height
+        );
 
         const drawingCanvas = canvasRef.current.canvasContainer.children[1];
         ctx.drawImage(
@@ -145,7 +157,9 @@ function Annotation() {
           setModifiedImage(uploadedImageUrl);
 
           // Get projectID and videoId
-          const projectID = new URLSearchParams(location.search).get("projectID");
+          const projectID = new URLSearchParams(location.search).get(
+            "projectID"
+          );
           const videoId = new URLSearchParams(location.search).get("videoId");
 
           if (!projectID || !videoId) {
@@ -154,7 +168,10 @@ function Annotation() {
           }
 
           // Firestore reference
-          const videoDocRef = doc(db, `projects/${projectID}/videos/${videoId}`);
+          const videoDocRef = doc(
+            db,
+            `projects/${projectID}/videos/${videoId}`
+          );
 
           // Update Firestore with the new annotation
           await updateDoc(videoDocRef, {
@@ -170,7 +187,10 @@ function Annotation() {
           // Redirect to a blank page with success message
           navigate("/annotation-success");
         } catch (error) {
-          console.error("Error uploading to Cloudinary or saving to Firestore:", error);
+          console.error(
+            "Error uploading to Cloudinary or saving to Firestore:",
+            error
+          );
         }
       };
 
@@ -182,17 +202,20 @@ function Annotation() {
   const handleDeleteNote = (index) => {
     setShapes(shapes.filter((_, i) => i !== index));
   };
-  
-  return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">Image Drawing App</h1>
 
-      <div className="w-full flex items-start gap-x-6 justify-center bg-white shadow-lg rounded-lg p-6">
+  return (
+    <div className="min-h-screen bg-[#EFF3EA] flex flex-col items-center justify-center p-4 font-sans">
+      <h1 className="text-4xl font-bold text-center text-[#444444] mb-6">
+        Click Start and Draw on the Image Below
+      </h1>
+
+      <div className="w-full flex 2xl:flex-row flex-col 2xl:items-start items-center gap-x-6  justify-center bg-[#FFFDF0] shadow-lg rounded-lg py-2 px-6">
+   
         <div className="mb-4">
           <div className="flex items-center mb-4">
             <button
               onClick={handleToggleDrawing}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mr-4"
+              className="px-4 py-2 bg-[#D9DFC6] text-[#444444] font-semibold rounded-lg hover:bg-[#FFF2C2] focus:outline-none focus:ring-2 focus:ring-[#D9DFC6] focus:ring-opacity-50 mr-4"
             >
               {isDrawing ? "Stop Drawing" : "Start Drawing"}
             </button>
@@ -209,9 +232,9 @@ function Annotation() {
             </div>
           </div>
 
-          <div className="relative mb-6 w-full"
-          onClickCapture={handleDrawingStop}
-
+          <div
+            className="relative mb-6 w-full"
+            onClickCapture={handleDrawingStop}
           >
             {image && (
               <CanvasDraw
@@ -222,7 +245,7 @@ function Annotation() {
                 lazyRadius={0}
                 hideGrid={true}
                 disabled={!isDrawing}
-                className="border-2 border-gray-300 rounded-lg w-full"
+                className="border-2 border-gray-400 rounded-lg w-full"
                 canvasWidth={canvasDimensions.width}
                 canvasHeight={canvasDimensions.height}
               />
@@ -231,7 +254,7 @@ function Annotation() {
 
           <button
             onClick={handleFinishAndSave}
-            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+            className="px-4 py-2 bg-[#D9DFC6] text-[#444444] font-semibold rounded-lg hover:bg-[#FFF2C2] focus:outline-none focus:ring-2 focus:ring-[#D9DFC6] focus:ring-opacity-50"
           >
             Finish Annotating and Save
           </button>
@@ -242,60 +265,96 @@ function Annotation() {
             canRedo={redoStack.length > 0}
           />
         </div>
+        <div className="flex flex-col 2xl:w-1/3 w-2/3 justify-center items-start gap-16 p-4">
+  <div className="flex flex-col w-full justify-center items-start">
+    <h2 className="text-2xl font-semibold mb-4 text-[#444444]">Notes</h2>
 
-        <div className="flex flex-col w-1/3 justify-center items-start p-4">
-          <h2 className="text-2xl font-semibold mb-4">Notes</h2>
+    <div className="flex gap-x-2 mb-4">
+      {["black", "red", "blue", "green", "yellow"].map((color) => (
+        <div
+          key={color}
+          onClick={() => handleNoteColorChange(color)}
+          className={`w-6 h-6 rounded-full cursor-pointer border-2 border-gray-300`}
+          style={{ backgroundColor: color }}
+        />
+      ))}
+    </div>
 
-          <div className="flex gap-x-2 mb-4">
-            {["black", "red", "blue", "green", "yellow"].map((color) => (
-              <div
-                key={color}
-                onClick={() => handleNoteColorChange(color)}
-                className={`w-6 h-6 rounded-full cursor-pointer border-2 border-gray-300`}
-                style={{ backgroundColor: color }}
-              />
-            ))}
-          </div>
+    <textarea
+      value={currentNote}
+      onChange={(e) => setCurrentNote(e.target.value)}
+      placeholder="Add a note"
+      className="w-full p-2 text-[#444444] border-2 border-gray-300 rounded-md mb-4 bg-white"
+    />
 
-          <textarea
-            value={currentNote}
-            onChange={(e) => setCurrentNote(e.target.value)}
-            placeholder="Add a note"
-            className="w-full p-2 text-black border-2 border-gray-300 rounded-md mb-4"
-          />
+    <button
+      onClick={handleSaveNote}
+      className="px-4 py-2 bg-[#FFF2C2] text-[#444444] font-semibold rounded-lg hover:bg-[#D9DFC6] focus:outline-none focus:ring-2 focus:ring-[#FFF2C2] focus:ring-opacity-50"
+    >
+      Add Note
+    </button>
 
-          <button
-            onClick={handleSaveNote}
-            className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50"
+    <div className="mt-6 w-full bg-[#EFF3EA] p-2 rounded-xl max-h-96 overflow-auto border-2 border-gray-300 scrollbar scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <h3 className="text-xl font-semibold mb-4 text-[#444444]">Saved Notes:</h3>
+      <ul className="space-y-4">
+        {shapes.map((shape, index) => (
+          <li
+            key={index}
+            className="p-4 border-2 max-w-96 rounded-lg flex flex-col bg-white"
+            style={{ borderColor: shape.color }}
           >
-            Add Note
-          </button>
+            <div
+              className="break-words"
+              style={{ color: shape.color }}
+            >
+              <strong>Note {index + 1}: </strong>
+              {shape.note}
+            </div>
+            <button
+              onClick={() => handleDeleteNote(index)}
+              className="mt-2 text-orange-950 hover:text-red-700 font-bold px-2 self-end"
+            >
+              <RxCross2 />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div className="w-full max-w-4xl mb-6 p-4 bg-[#FFF2C2] text-[#444444] rounded-lg shadow">
+    <h2 className="text-2xl font-semibold mb-2">How to Use</h2>
+    <ol className="list-disc pl-6 space-y-4">
+  <li className="relative">
+    <span className="absolute left-0 top-1/3 transform -translate-x-4 -translate-y-1/2 text-gray-500 text-lg">
+      •
+    </span>
+    Click <strong>Start Drawing</strong> to begin annotating on the image.
+  </li>
+  <li className="relative">
+    <span className="absolute left-0 top-1/3 transform -translate-x-4 -translate-y-1/2 text-gray-500 text-lg">
+      •
+    </span>
+    Use the color palette to select a color for your drawing.
+  </li>
+  <li className="relative">
+    <span className="absolute left-0 top-1/3 transform -translate-x-4 -translate-y-1/2 text-gray-500 text-lg">
+      •
+    </span>
+    Add notes in the notes section, ensuring each note corresponds to its drawing by matching colors.
+  </li>
+  <li className="relative">
+    <span className="absolute left-0 top-1/3 transform -translate-x-4 -translate-y-1/2 text-gray-500 text-lg">
+      •
+    </span>
+    When finished, click <strong>Finish Annotating and Save</strong> to save your annotations.
+  </li>
+</ol>
 
-          <div className="mt-6 w-full bg-gray-400 p-2 rounded-xl">
-  <h3 className="text-xl font-semibold mb-4">Saved Notes:</h3>
-  <ul className="space-y-4">
-    {shapes.map((shape, index) => (
-      <li
-        key={index}
-        className="p-4 border-2 rounded-lg flex justify-between items-center"
-        style={{ borderColor: shape.color }}
-      >
-        <div style={{ color: shape.color }}>
-          <strong>Note {index + 1}: </strong>
-          {shape.note}
-        </div>
-        <button
-          onClick={() => handleDeleteNote(index)}
-          className="text-red-500 hover:text-red-700 font-bold px-2"
-        >
-          X
-        </button>
-      </li>
-    ))}
-  </ul>
+
+  </div>
 </div>
 
-        </div>
+       
       </div>
 
       {modifiedImage && (
@@ -310,6 +369,7 @@ function Annotation() {
       )}
     </div>
   );
+
 }
 
 export default Annotation;

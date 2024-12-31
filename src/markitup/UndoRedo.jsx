@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { GrRedo, GrUndo } from "react-icons/gr";
 
 const UndoRedo = ({ onUndo, onRedo, canUndo, canRedo }) => {
   return (
@@ -11,8 +12,8 @@ const UndoRedo = ({ onUndo, onRedo, canUndo, canRedo }) => {
           canUndo ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
         } text-white`}
       >
-        Undo
-      </button>
+<GrUndo />
+</button>
       <button
         onClick={onRedo}
         disabled={!canRedo}
@@ -20,7 +21,8 @@ const UndoRedo = ({ onUndo, onRedo, canUndo, canRedo }) => {
           canRedo ? "bg-green-600 hover:bg-green-700" : "bg-gray-400 cursor-not-allowed"
         } text-white`}
       >
-        Redo
+        <GrRedo />
+
       </button>
     </div>
   );
