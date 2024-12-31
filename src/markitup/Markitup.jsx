@@ -24,7 +24,8 @@ const AccessPage = () => {
       const user = userCredential.user;
 
       if (user.email === adminEmail) {
-        navigate("/markitup/dashboard"); // Redirect to admin dashboard
+        window.open("/markitup/dashboard", '_blank');
+
       } else {
         alert("Access Denied: Only admin can log in here.");
       }

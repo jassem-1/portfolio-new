@@ -52,7 +52,7 @@ const FreelancerDashboard = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Freelancer Dashboard</h1>
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-8">My Dashboard</h1>
 
       {/* Create New Project Form */}
       <div className="bg-white p-6 shadow-lg rounded-lg mb-8">
