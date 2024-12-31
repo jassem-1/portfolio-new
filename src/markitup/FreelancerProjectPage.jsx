@@ -121,9 +121,15 @@ const FreelancerProjectPage = () => {
         <input
           type="file"
           onChange={(e) => setFile(e.target.files[0])}
-          className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className={`w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+            file ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           accept="video/*"
+          disabled={!!file}
         />
+        {file && (
+          <p className="text-sm text-green-600 mb-4">Selected Video: {file.name}</p>
+        )}
         <button
           onClick={uploadVideo}
           className=" bg-blue-500 text-white px-3 py-3 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
@@ -144,11 +150,11 @@ const FreelancerProjectPage = () => {
               <li key={video.id} className="p-4 border border-gray-200 rounded-lg">
                 <h3 className="text-lg font-bold text-gray-800 mb-2">{video.name}</h3>
                 <a
-  href={`/projects/${projectID}/videos/${video.id}`}
-  className="bg-blue-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-600 transition duration-300 inline-block"
->
-  View Details
-</a>
+                  href={`/projects/${projectID}/videos/${video.id}`}
+                  className="bg-blue-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-600 transition duration-300 inline-block"
+                >
+                  View Details
+                </a>
                 <p className="text-sm text-gray-500 mt-2">
                   Uploaded on: {new Date(video.createdAt.seconds * 1000).toLocaleString()}
                 </p>

@@ -1,29 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { IoMdEye } from "react-icons/io";
 import CustomModal from "./modal-video/Modal";
+import { useInView } from "react-intersection-observer";
 
-interface ProjectProps {
-  title: string;
-  description: string;
-  tags: ReadonlyArray<string>; // Change to readonly array
-  imageUrl: string;
-  url?: string; // Optional
-  videoUrl?: string; // Optional
-}
-
-const Project: React.FC<ProjectProps> = ({ title, description, tags, imageUrl, url, videoUrl }) => {
+const Project = ({ title, description, tags, imageUrl, url, videoUrl }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [hasBeenInView, setHasBeenInView] = useState(false); // Tracks if the modal has been in view
+
+  // Intersection Observer hook for the modal
+  const { ref: modalRef, inView: isModalInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (isModalOpen && isModalInView) {
+      setHasBeenInView(true); // Modal has been in view
+    }
+    if (isModalOpen && !isModalInView && hasBeenInView) {
+      setModalOpen(false); // Close modal when it goes out of view
+    }
+  }, [isModalInView, isModalOpen, hasBeenInView]);
 
   const handleProjectClick = () => {
     if (url) {
       window.open(url, "_blank"); // Open the URL in a new tab
     } else {
       setModalOpen(true); // Open modal to display video if no URL is provided
+      setHasBeenInView(false); // Reset the view tracking when opening a modal
     }
   };
 
   return (
-    <>
+    <div>
       {/* Project Card */}
       <div className="group mb-3 sm:mb-8 last:mb-0 cursor-pointer" onClick={handleProjectClick}>
         <section className="bg-[#0b0e13] max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[18rem] transition sm:group-even:pl-8 dark:bg-white/10 dark:hover:bg-white/20">
@@ -67,14 +77,31 @@ const Project: React.FC<ProjectProps> = ({ title, description, tags, imageUrl, u
       </div>
 
       {/* Using the Custom Modal for Video */}
-      <CustomModal isOpen={isModalOpen} onRequestClose={() => setModalOpen(false)} title={title}>
-        <video width="100%" controls>
-          <source src={videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </CustomModal>
-    </>
+      {isModalOpen && (
+        <CustomModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          title={title}
+        >
+          <div ref={modalRef}>
+            <video width="100%" controls>
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </CustomModal>
+      )}
+    </div>
   );
+};
+
+Project.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  videoUrl: PropTypes.string,
 };
 
 export default Project;
