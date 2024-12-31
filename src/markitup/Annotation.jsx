@@ -14,6 +14,7 @@ function Annotation() {
   const [drawingColor, setDrawingColor] = useState("black");
   const [noteColor, setNoteColor] = useState("black");
   const [currentNote, setCurrentNote] = useState("");
+  const [isFinishing, setIsFinishing] = useState(false);
   const [shapes, setShapes] = useState([]);
   const canvasRef = useRef(null);
   const [canvasDimensions, setCanvasDimensions] = useState({
@@ -114,6 +115,8 @@ function Annotation() {
 
   const handleFinishAndSave = async () => {
     if (canvasRef.current) {
+      setIsFinishing(true);
+
       const combinedCanvas = document.createElement("canvas");
       combinedCanvas.width = canvasDimensions.width;
       combinedCanvas.height = canvasDimensions.height;
@@ -181,7 +184,7 @@ function Annotation() {
               timestamp: new Date().toISOString(),
             }),
           });
-
+setIsFinishing(false);
           console.log("Annotation saved successfully!");
 
           // Redirect to a blank page with success message
@@ -254,8 +257,11 @@ function Annotation() {
 
           <button
             onClick={handleFinishAndSave}
-            className="px-4 py-2 bg-[#D9DFC6] text-[#444444] font-semibold rounded-lg hover:bg-[#FFF2C2] focus:outline-none focus:ring-2 focus:ring-[#D9DFC6] focus:ring-opacity-50"
+            className="px-4 py-2 flex items-center justify-center gap-2 bg-[#D9DFC6] text-[#444444] font-semibold rounded-lg hover:bg-[#FFF2C2] focus:outline-none focus:ring-2 focus:ring-[#D9DFC6] focus:ring-opacity-50"
           >
+             {isFinishing? (
+                  <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-black border-opacity-75"></span>
+                ) : null}
             Finish Annotating and Save
           </button>
           <UndoRedo
