@@ -12,7 +12,7 @@ import footballWeeklyImg from "../../../src/assets/images/football.jpg";
 import imen from "../../../src/assets/images/imen.png";
 import amine from "../../../src/assets/images/amine.png";
 import markitup from "../../../src/assets/images/markitup.png";
-
+import donkey from "../../assets/images/golden-donkey.png";
 import esprit from "../../../src/assets/images/esprit.png";
 interface ProjectData {
   title: string;
@@ -25,9 +25,18 @@ interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
+    title: "Golden Donkey ($GDK) - MemeCoin",
+    description:
+      "I built the frontend for Golden Donkey ($GDK), creating a unique, dynamic interface with custom animations and a smooth, engaging user experience. I focused on making the platform visually striking and highly interactive, ensuring seamless blockchain integration",
+    tags: ["React.js", "Tailwind CSS", "Framer Motion"],
+    imageUrl: donkey, // Replace with an appropriate image URL or import
+    videoUrl:
+      "https://res.cloudinary.com/dbhrjqj53/video/upload/v1741130225/recording_19_tss66i.mp4",
+  },
+  {
     title: "Custom Web Application for Amine Chebbi",
     description:
-      "Collaborated with Amine Chebbi, a renowned Tunisian trading mentor, to develop a tailored web application. The app streamlines user requests for joining VIP groups, asking trading questions, and requesting educational resources. It features a custom admin dashboard that allows Amine to efficiently manage, filter, and track requests in real-time, improving operational workflows.",
+      "The app streamlines user requests for joining VIP groups, asking trading questions, and requesting educational resources. It features a custom admin dashboard that allows Amine to efficiently manage, filter, and track requests in real-time, improving operational workflows.",
     tags: [
       "React.js",
       "Tailwind CSS",

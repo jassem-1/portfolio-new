@@ -40,8 +40,8 @@ const Hero = () => {
       <Navbar />
 
       <div id="up" className="flex pt-24 z-40 pl-4">
-        <div className="left-section flex flex-col gap-6 items-start justify-start pt-8 ">
-          <div className="flex items-end gap-6 mb-8  relative">
+        <div className="left-section flex flex-col gap-4 md:gap-6 items-start justify-start pt-8 ">
+          <div className="flex items-end gap-6 mb-8 md:scale-100 scale-75 relative">
             {" "}
             {/* Make this relative */}
             <Lottie
@@ -63,18 +63,18 @@ const Hero = () => {
           </div>
           <ReactTyped
             strings={["Full Stack Web Developer"]}
-            className="title text-2xl md:text-4xl"
+            className="title text-lg sm:text-2xl md:text-4xl"
             typeSpeed={10}
             startDelay={500}
           />
 
-          <p className="sub-title text-base sm:text-xl md:text-2xl">
+          <p className="sub-title text-sm sm:text-xl md:text-2xl">
             I'm{" "}
             <span className="text-gray-100 font-semibold">Jassem Souey</span> ,
             a passionate fullstack developer specialized in building scalable,
             user-centric applications, with a focus on frontend development.
           </p>
-          <div className="all-icons flex">
+          <div className="all-icons flex sm:scale-100 scale-75 sm:mr-0 -ml-5">
             {/* GitHub Icon */}
             <a
               href="https://github.com/jassem-1" // Replace with your GitHub URL
@@ -108,7 +108,7 @@ const Hero = () => {
               className="flex gap-2 text-gray-400 items-center border border-gray-200"
             >
               <FaPhoneAlt />
-              <span className="text-xl">+216 55392530</span>
+              <span className="text-sm md:text-xl">+216 55392530</span>
               <FaWhatsapp className="text-xl" />
             </a>
           </div>
@@ -130,7 +130,7 @@ const Hero = () => {
 
       <a
         className="mt-2"
-        href="/cv-pfe.pdf" // Path to the PDF file
+        href="/Resume-Jassem-2025.pdf" // Path to the PDF file
         download="jassem-resume.pdf" // This triggers the file download with a custom file name
       >
         <NeonButton />

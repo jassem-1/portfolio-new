@@ -20,12 +20,15 @@ const AccessPage = () => {
     setLoginError(""); // Clear previous errors
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       if (user.email === adminEmail) {
-        window.open("/markitup/dashboard", '_blank');
-
+        window.open("/markitup/dashboard", "_blank");
       } else {
         alert("Access Denied: Only admin can log in here.");
       }
@@ -42,13 +45,19 @@ const AccessPage = () => {
     setAccessError(""); // Clear previous errors
 
     try {
-      const q = query(collection(db, "projects"), where("accessCode", "==", accessCode));
+      // Query Firestore for projects with the matching access code
+      const q = query(
+        collection(db, "projects"),
+        where("accessCode", "==", accessCode)
+      );
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
         const projectDoc = querySnapshot.docs[0];
         const projectID = projectDoc.id;
-        navigate(`/project/${projectID}`); // Redirect to the project page
+
+        // Redirect to the project page
+        navigate(`/project/${projectID}`);
       } else {
         setAccessError("Invalid access code. Please try again.");
       }
@@ -65,7 +74,9 @@ const AccessPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
         {/* Admin Login Form */}
         <div className="bg-white text-gray-800 p-8 shadow-lg rounded-xl border border-gray-200">
-          <h2 className="text-3xl font-semibold text-center mb-6">Admin Login</h2>
+          <h2 className="text-3xl font-semibold text-center mb-6">
+            Admin Login
+          </h2>
           <input
             type="email"
             placeholder="Email"
@@ -116,12 +127,18 @@ const AccessPage = () => {
               "Login"
             )}
           </button>
-          {loginError && <p className="text-red-500 mt-4 text-sm text-center">{loginError}</p>}
+          {loginError && (
+            <p className="text-red-500 mt-4 text-sm text-center">
+              {loginError}
+            </p>
+          )}
         </div>
 
         {/* Client Access Form */}
         <div className="bg-white text-gray-800 p-8 shadow-lg rounded-xl border border-gray-200">
-          <h2 className="text-3xl font-semibold text-center mb-6">Client Access</h2>
+          <h2 className="text-3xl font-semibold text-center mb-6">
+            Client Access
+          </h2>
           <input
             type="text"
             placeholder="Enter Access Code"
@@ -165,7 +182,11 @@ const AccessPage = () => {
               "Access Project"
             )}
           </button>
-          {accessError && <p className="text-red-500 mt-4 text-sm text-center">{accessError}</p>}
+          {accessError && (
+            <p className="text-red-500 mt-4 text-sm text-center">
+              {accessError}
+            </p>
+          )}
         </div>
       </div>
     </div>

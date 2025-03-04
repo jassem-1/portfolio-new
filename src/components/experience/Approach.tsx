@@ -9,12 +9,12 @@ const experienceData = [
   {
     company: "CHAIN INDUSTRIES",
     position: "FRONT‑END DEVELOPER",
-    dates: "Jan 2023 – Current",
+    dates: "Dec 2022 – Current",
     descriptions: [
       "Developed dynamic user interfaces for cryptocurrency and trading platforms with ReactJS and Next.js, converting Figma designs into SEO-friendly websites",
       "Applied Tailwind CSS for consistent, scalable design across devices and enhanced user experience with complex animations using Framer Motion.",
-      "Utilized web3 libraries like Wagmi, Blocknative, and Moralis for token and block transaction fetching, as well as wallet connection."
-    ]
+      "Utilized web3 libraries like Wagmi, Blocknative, and Moralis for token and block transaction fetching, as well as wallet connection.",
+    ],
   },
   {
     company: "STABLE LABS",
@@ -22,8 +22,8 @@ const experienceData = [
     dates: "1st Aug 2024 ‑ 15th Sept",
     descriptions: [
       "Contributed to building a cutting-edge platform providing seamless access to tokenized real-world financial assets",
-      "Created intuitive and responsive user interfaces to enable global users to effortlessly interact with financial assets, fostering financial inclusion."
-    ]
+      "Created intuitive and responsive user interfaces to enable global users to effortlessly interact with financial assets, fostering financial inclusion.",
+    ],
   },
   {
     company: "ESPRIT",
@@ -32,8 +32,8 @@ const experienceData = [
     descriptions: [
       "Developed full-stack solutions for team and project management with Spring and React, emphasizing user-friendly interfaces and data security.",
       "Implemented project creation, task assignment, and progress tracking with key performance indicators.",
-      "Created features for team creation, role assignment, and performance evaluation to enhance efficiency and collaboration."
-    ]
+      "Created features for team creation, role assignment, and performance evaluation to enhance efficiency and collaboration.",
+    ],
   },
   {
     company: "FREELANCE",
@@ -44,39 +44,43 @@ const experienceData = [
       "Translated Figma designs into functional websites and cloned existing sites for updates and improvements.",
       "Fixed backend issues in existing projects, including CRUD operations and other logic problems.",
       "Implemented role-based authentication in Next.js projects using NextAuth, including login and registration pages.",
-      "Built a comprehensive Learning Management System using Next.js, Prisma, and Stripe, featuring course browsing, purchase functionality, and progress tracking."
-    ]
-  }
+      "Built a comprehensive Learning Management System using Next.js, Prisma, and Stripe, featuring course browsing, purchase functionality, and progress tracking.",
+    ],
+  },
 ];
 
 const Approach = () => {
-
   return (
     <section className="w-full flex flex-col justify-center items-center py-10">
-     <h2 
-                
-                    className="mb-6 text-4xl font-extrabold md:text-5xl lg:text-6xl font-montserrat"
-                >
-Experience                
-</h2>
+      <h2 className="mb-6 text-4xl font-extrabold md:text-5xl lg:text-6xl font-montserrat">
+        Experience
+      </h2>
       {/* remove bg-white dark:bg-black */}
       <div className="pt-6 grid gap-4 w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-  {experienceData.map((experience, index) => (
-    <Card
-      key={index}
-      title={experience.position}
-      icon={<AceternityIcon order={experience.position} position={experience.dates} company={experience.company} />}
-      descriptions={experience.descriptions} // Pass the descriptions array
-    >
-      <CanvasRevealEffect
-        animationSpeed={index === 0 ? 5.1 : 3} // Example of dynamic animation speed
-        containerClassName={index === 1 ? "bg-gray-800 rounded-3xl overflow-hidden" : 
-          "bg-gray-800  rounded-3xl overflow-hidden"}
-      />
-    </Card>
-  ))}
-</div>
-
+        {experienceData.map((experience, index) => (
+          <Card
+            key={index}
+            title={experience.position}
+            icon={
+              <AceternityIcon
+                order={experience.position}
+                position={experience.dates}
+                company={experience.company}
+              />
+            }
+            descriptions={experience.descriptions} // Pass the descriptions array
+          >
+            <CanvasRevealEffect
+              animationSpeed={index === 0 ? 5.1 : 3} // Example of dynamic animation speed
+              containerClassName={
+                index === 1
+                  ? "bg-gray-800 rounded-3xl overflow-hidden"
+                  : "bg-gray-800  rounded-3xl overflow-hidden"
+              }
+            />
+          </Card>
+        ))}
+      </div>
     </section>
   );
 };
@@ -96,7 +100,7 @@ const Card = ({
   descriptions: string[]; // an array of descriptions
 }) => {
   const [hovered, setHovered] = React.useState(false);
-  
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -139,56 +143,63 @@ const Card = ({
         >
           {icon}
         </div>
-       
+
         {descriptions.map((des, index) => (
-    <p
-      key={index}
-      className="3xl:text-sm text-[11px]  opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 list-disc	font-semibold
+          <p
+            key={index}
+            className="3xl:text-sm text-[11px]  opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 list-disc	font-semibold
        group-hover/canvas-card:text-white text-start group-hover/canvas-card:-translate-y-2 transition duration-200"
-      style={{ color: "#ffffff" }}
-    >
-      <span className="text-xl font-semibold">.{" "}</span>{des}
-    </p>
-  ))}
+            style={{ color: "#ffffff" }}
+          >
+            <span className="text-xl font-semibold">. </span>
+            {des}
+          </p>
+        ))}
       </div>
     </div>
   );
 };
 // add order prop for the Phase number change
-const AceternityIcon = ({ order , position ,company}: { order: string , position:string ,company:string}) => {
+const AceternityIcon = ({
+  order,
+  position,
+  company,
+}: {
+  order: string;
+  position: string;
+  company: string;
+}) => {
   const lottieRef = useRef();
 
   return (
     <div className="flex flex-col items-center relative  justify-center gap-10 p-6 rounded-full">
-       <Lottie
-              lottieRef={lottieRef}
-              animationData={clickhere} // Use the imported variable here
-              style={{ width: 100, height: 100 }}
-              loop
-              autoplay
-              className="opacity-100 sm:opacity-0 absolute -top-20 opacity-50 -right-14 z-0" // Add absolute positioning and z-index
-            />
-<button className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[4px] bg-gradient-to-r from-[#0d1c494f] via-[#134e4a5b] to-[#60a5fa57] shadow-lg transition-all hover:scale-105">
-     
-      <span
-        className="inline-flex h-full w-full cursor-pointer items-center justify-center 
+      <Lottie
+        lottieRef={lottieRef}
+        animationData={clickhere} // Use the imported variable here
+        style={{ width: 100, height: 100 }}
+        loop
+        autoplay
+        className="opacity-100 sm:opacity-0 absolute -top-20 opacity-50 -right-14 z-0" // Add absolute positioning and z-index
+      />
+      <button className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[4px] bg-gradient-to-r from-[#0d1c494f] via-[#134e4a5b] to-[#60a5fa57] shadow-lg transition-all hover:scale-105">
+        <span
+          className="inline-flex h-full w-full cursor-pointer items-center justify-center 
         rounded-full px-6 py-4 text-white backdrop-blur-md font-normal text-xl sm:text-2xl transition-all hover:scale-105"
-      >
-        {order}
-      </span>
-    </button>
-  
-    <div className="flex flex-col items-center   text-white">
-      <p className="text-sm  font-medium">{position}</p>
-      <div className="flex items-center gap-2 mt-4">
-        <MdHomeWork className="text-white" size={24} />
-        <span className="text-lg whitespace-nowrap font-semibold">{company}</span>
+        >
+          {order}
+        </span>
+      </button>
+
+      <div className="flex flex-col items-center   text-white">
+        <p className="text-sm  font-medium">{position}</p>
+        <div className="flex items-center gap-2 mt-4">
+          <MdHomeWork className="text-white" size={24} />
+          <span className="text-lg whitespace-nowrap font-semibold">
+            {company}
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-  
-
-   
   );
 };
 
