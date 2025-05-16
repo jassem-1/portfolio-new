@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
 const timelineData = [
-  { date: "Sep 2022", text: "ensi", endDate: "Jun 2025" },
-  { date: "Dec 2022", text: "freelance", endDate: "-current" },
+  { date: "Sep 2022", text: "Ensi", endDate: "Jun 2025" },
+  { date: "Dec 2022", text: "Freelance", endDate: "-current" },
   { date: "Dec 2022", text: "Chain Industries", endDate: "-current" },
-  { date: "Jul 2023", text: "esprit(intern)", endDate: "Aug 2023" },
-  { date: "Jul 2024", text: "Algosama(intern)", endDate: "Aug 2024" },
+  { date: "Jul 2023", text: "Esprit (intern)", endDate: "Aug 2023" },
+  { date: "Jul 2024", text: "Algosama (intern)", endDate: "Aug 2024" },
   { date: "Aug 2024", text: "StableLabs", endDate: "Sep 2024" },
-  { date: "Feb 2025", text: "itgrow(pfe)", endDate: "current" },
+  { date: "Feb 2025", text: "Itgrow (pfe)", endDate: "current" },
 ];
 
 const Timeline = () => {
