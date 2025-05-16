@@ -6,9 +6,8 @@ import { useInView } from "react-intersection-observer";
 
 const Project = ({ title, description, tags, imageUrl, url, videoUrl }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [hasBeenInView, setHasBeenInView] = useState(false); // Tracks if the modal has been in view
+  const [hasBeenInView, setHasBeenInView] = useState(false);
 
-  // Intersection Observer hook for the modal
   const { ref: modalRef, inView: isModalInView } = useInView({
     threshold: 0.1,
     triggerOnce: false,
@@ -16,19 +15,19 @@ const Project = ({ title, description, tags, imageUrl, url, videoUrl }) => {
 
   useEffect(() => {
     if (isModalOpen && isModalInView) {
-      setHasBeenInView(true); // Modal has been in view
+      setHasBeenInView(true);
     }
     if (isModalOpen && !isModalInView && hasBeenInView) {
-      setModalOpen(false); // Close modal when it goes out of view
+      setModalOpen(false);
     }
   }, [isModalInView, isModalOpen, hasBeenInView]);
 
   const handleProjectClick = () => {
     if (url) {
-      window.open(url, "_blank"); // Open the URL in a new tab
+      window.open(url, "_blank");
     } else {
-      setModalOpen(true); // Open modal to display video if no URL is provided
-      setHasBeenInView(false); // Reset the view tracking when opening a modal
+      setModalOpen(true);
+      setHasBeenInView(false);
     }
   };
 
@@ -67,10 +66,10 @@ const Project = ({ title, description, tags, imageUrl, url, videoUrl }) => {
             <p className="my-2 xs:text-xs text-xs w-full leading-relaxed text-gray-400 dark:text-white/65">
               {description}
             </p>
-            <ul className="flex flex-wrap mt-4 gap-2 sm:mt-auto">
+            <ul className="flex mt-4 gap-2 pb-3 sm:mt-auto overflow-x-auto whitespace-nowrap scrollbar-hide touch-pan-x">
               {tags.map((tag, index) => (
                 <li
-                  className="bg-[#27272a] bg-opacity-55 px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70"
+                  className="bg-[#27272a] bg-opacity-55 px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70 inline-block"
                   key={index}
                 >
                   {tag}
@@ -81,7 +80,7 @@ const Project = ({ title, description, tags, imageUrl, url, videoUrl }) => {
         </section>
       </div>
 
-      {/* Using the Custom Modal for Video */}
+      {/* Custom Modal for Video */}
       {isModalOpen && (
         <CustomModal
           isOpen={isModalOpen}

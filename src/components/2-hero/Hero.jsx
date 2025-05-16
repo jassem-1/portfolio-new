@@ -74,7 +74,7 @@ const Hero = () => {
             a passionate fullstack developer specialized in building scalable,
             user-centric applications, with a focus on frontend development.
           </p>
-          <div className="all-icons flex sm:scale-100 scale-75 sm:mr-0 -ml-5">
+          <div className="all-icons flex sm:scale-100 scale-75 sm:mr-0">
             {/* GitHub Icon */}
             <a
               href="https://github.com/jassem-1" // Replace with your GitHub URL
@@ -130,7 +130,7 @@ const Hero = () => {
 
       <a
         className="mt-2"
-        href="/Resume-Jassem-2025.pdf" // Path to the PDF file
+        href="Resume-mai-2025.pdf" // Path to the PDF file
         download="jassem-resume.pdf" // This triggers the file download with a custom file name
       >
         <NeonButton />

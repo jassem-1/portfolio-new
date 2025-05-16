@@ -29,7 +29,15 @@ export const projectsData: ProjectData[] = [
     title: "DeFi Platform",
     description:
       "This React app is a DeFi and wellness platform that integrates cryptocurrency management (swapping, coin tracking, wallet management), subscription plans (for coin analyses and community features) and much more. It uses Web3 technologies, Redux for state management, and Tailwind CSS for responsive design",
-    tags: ["React.js", "Tailwind CSS", "Framer Motion"],
+    tags: [
+      "React.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Web3",
+      "ChartJS",
+      "OneInch",
+      "Moralis",
+    ],
     imageUrl: flow, // Replace with an appropriate image URL or import
     videoUrl:
       "https://res.cloudinary.com/dbhrjqj53/video/upload/v1747390651/recording-25_EPHRSgK5_odbso5.mp4",
