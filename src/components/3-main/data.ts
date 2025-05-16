@@ -14,6 +14,7 @@ import amine from "../../../src/assets/images/amine.png";
 import markitup from "../../../src/assets/images/markitup.png";
 import donkey from "../../assets/images/golden-donkey.png";
 import esprit from "../../../src/assets/images/esprit.png";
+import flow from "../../../src/assets/images/flow.png";
 interface ProjectData {
   title: string;
   description: string;
@@ -25,13 +26,21 @@ interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
+    title: "DeFi Platform",
+    description:
+      "This React app is a DeFi and wellness platform that integrates cryptocurrency management (swapping, coin tracking, wallet management), subscription plans (for coin analyses and community features) and much more. It uses Web3 technologies, Redux for state management, and Tailwind CSS for responsive design",
+    tags: ["React.js", "Tailwind CSS", "Framer Motion"],
+    imageUrl: flow, // Replace with an appropriate image URL or import
+    videoUrl:
+      "https://res.cloudinary.com/dbhrjqj53/video/upload/v1747390651/recording-25_EPHRSgK5_odbso5.mp4",
+  },
+  {
     title: "Golden Donkey ($GDK) - MemeCoin",
     description:
       "I built the frontend for Golden Donkey ($GDK), creating a unique, dynamic interface with custom animations and a smooth, engaging user experience. I focused on making the platform visually striking and highly interactive, ensuring seamless blockchain integration",
     tags: ["React.js", "Tailwind CSS", "Framer Motion"],
     imageUrl: donkey, // Replace with an appropriate image URL or import
-    videoUrl:
-      "https://res.cloudinary.com/dbhrjqj53/video/upload/v1741130225/recording_19_tss66i.mp4",
+    url: "https://www.goldendonkey.io/",
   },
   {
     title: "Custom Web Application for Amine Chebbi",
