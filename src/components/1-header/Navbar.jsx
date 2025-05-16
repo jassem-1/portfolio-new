@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../assets/images/jslogo.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState("About");
@@ -19,14 +19,17 @@ const Navbar = () => {
   ];
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const handleScroll = () => {
-      const aboutSection = document.getElementById('up');
+      const aboutSection = document.getElementById("up");
       const aboutSectionTop = aboutSection?.getBoundingClientRect().top;
 
       // Check if the user is in the "About" section
-      if (aboutSectionTop && aboutSectionTop >= 0 && aboutSectionTop <= window.innerHeight) {
+      if (
+        aboutSectionTop &&
+        aboutSectionTop >= 0 &&
+        aboutSectionTop <= window.innerHeight
+      ) {
         setIsVisible(true); // Always show navbar in the "About" section
       } else {
         // Show the navbar briefly when scrolling starts outside the "About" section
@@ -38,10 +41,10 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
   }, []);
@@ -49,45 +52,42 @@ const Navbar = () => {
   const handleNavClick = (e, title) => {
     e.preventDefault();
     setActive(title);
-  
+
     if (title === "MarkItUp") {
       navigate("/markitup");
     } else {
-      const section = document.getElementById(title === "About" ? "up" : title.toLowerCase());
+      const section = document.getElementById(
+        title === "About" ? "up" : title.toLowerCase()
+      );
       if (section) {
-        const navbarHeight = document.querySelector('nav').offsetHeight;
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY - navbarHeight;
-        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        const navbarHeight = document.querySelector("nav").offsetHeight;
+        const sectionTop =
+          section.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({ top: sectionTop, behavior: "smooth" });
       }
     }
   };
-  
 
   return (
-    <nav className={`w-full max-w-[300px] sm:max-w-[500px] md:max-w-[700px] z-50 xl:max-w-[850px] flex p-6 rounded-xl 
+    <nav
+      className={`w-full max-w-[300px] sm:max-w-[500px] md:max-w-[700px] z-50 xl:max-w-[850px] flex p-6 rounded-xl 
       justify-between bg-black items-center h-10 fixed transition-transform duration-500
       hover:translate-y-0 hover:opacity-100`}
     >
       <div className="flex items-center gap-x-4">
         <ul className="list-none md:flex hidden justify-end items-center flex-1">
           {navLinks.map((nav, index) => (
-          <li
-          key={nav.id}
-          className={`font-poppins font-normal cursor-pointer md:text-sm xl:text-[16px] relative ${
-            active === nav.title ? "text-white" : "text-gray-400"
-          } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-          onClick={(e) => handleNavClick(e, nav.title)} // Update onClick handler
-        >
-          <a href={`#${nav.id}`} className="flex items-center">
-            {nav.title}
-            {nav.title === "MarkItUp" && (
-              <span className="ml-2 text-xs text-white bg-red-500 px-2 py-1 rounded-full uppercase">
-                New
-              </span>
-            )}
-          </a>
-        </li>
-        
+            <li
+              key={nav.id}
+              className={`font-poppins font-normal cursor-pointer md:text-sm xl:text-[16px] relative ${
+                active === nav.title ? "text-white" : "text-gray-400"
+              } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+              onClick={(e) => handleNavClick(e, nav.title)} // Update onClick handler
+            >
+              <a href={`#${nav.id}`} className="flex items-center">
+                {nav.title}
+              </a>
+            </li>
           ))}
         </ul>
       </div>

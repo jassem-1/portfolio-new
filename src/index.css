@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: "Exo", sans-serif;
   letter-spacing: 0.1px;
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
-
 
 *,
 *:before,
@@ -22,7 +22,8 @@ html {
   padding: 0;
 }
 @keyframes scaleUpAndDown {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -94,8 +95,6 @@ a:hover {
   cursor: pointer;
 }
 
-
-
 button {
   all: unset;
 }
@@ -153,7 +152,6 @@ html {
 }
 /* App container */
 
-
 .scroll2Top {
   background-color: rgba(25, 118, 210, 0.85);
   width: 2.6rem;
@@ -165,7 +163,6 @@ html {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 1.25rem;
-
 }
 @keyframes fadeInUp {
   0% {
@@ -192,7 +189,8 @@ html {
   opacity: 0;
   visibility: hidden;
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out,
+    visibility 0.5s;
 }
 
 .mobile-wrapper.open {
@@ -200,8 +198,6 @@ html {
   opacity: 1;
   visibility: visible;
 }
-
-
 
 .scroll2Top:hover {
   background-color: rgb(25, 118, 210);
@@ -221,13 +217,12 @@ html {
   }
 }
 
-.montserrat-font{
+.montserrat-font {
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
-
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 19px; /* Width of the scrollbar */
