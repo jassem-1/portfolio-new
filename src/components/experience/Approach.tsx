@@ -7,13 +7,13 @@ import { CanvasRevealEffect } from "./CanvasRevealEffect";
 import Lottie from "lottie-react";
 const experienceData = [
   {
-    company: "CHAIN INDUSTRIES",
-    position: "FRONT‑END DEVELOPER",
-    dates: "Dec 2022 – Current",
+    company: "IT-GROW",
+    position: "FULL‑STACK DEVELOPER INTERN (PFE)",
+    dates: "10st Feb 2025 ‑ Current",
     descriptions: [
-      "Developed dynamic user interfaces for cryptocurrency and trading platforms with ReactJS and Next.js, converting Figma designs into SEO-friendly websites",
-      "Applied Tailwind CSS for consistent, scalable design across devices and enhanced user experience with complex animations using Framer Motion.",
-      "Utilized web3 libraries like Wagmi, Blocknative, and Moralis for token and block transaction fetching, as well as wallet connection.",
+      "Developed Myco (InternConnect), a SaaS platform for intelligent intern management, using React.js, Spring Boot, and PostgreSQL to streamline task coordination and performance evaluation for SMEs and startups",
+      "Implemented role-based authentication, task management, and project administration features, leveraging JWT, Spring Security, and React Router for secure, user-friendly workflows",
+      "Explored AI-driven task recommendations using Python and scikit-learn to optimize project and tasks creation and intern-task assignments based on skills and workload",
     ],
   },
   {
@@ -26,6 +26,15 @@ const experienceData = [
     ],
   },
   {
+    company: "ALGOSAMA",
+    position: "FULL‑STACK DEVELOPER INTERN",
+    dates: "1st Jul 2024 ‑ 31st Aug 2024",
+    descriptions: [
+      "Developed a responsive real estate platform using React, TypeScript, Tailwind CSS for modern UI and seamless user interaction, and Framer Motion for dynamic animations.",
+      "Integrated Apollo Client and GraphQL for efficient data fetching of property listings and built a secure backend with Node.js, Express and MongoDB, leveraging JWT for authentication and Mongoose for database management",
+    ],
+  },
+  {
     company: "ESPRIT",
     position: "FULL‑STACK DEVELOPER INTERN",
     dates: "1st Jul 2023 ‑ 31st Aug 2023",
@@ -33,6 +42,16 @@ const experienceData = [
       "Developed full-stack solutions for team and project management with Spring and React, emphasizing user-friendly interfaces and data security.",
       "Implemented project creation, task assignment, and progress tracking with key performance indicators.",
       "Created features for team creation, role assignment, and performance evaluation to enhance efficiency and collaboration.",
+    ],
+  },
+  {
+    company: "CHAIN INDUSTRIES",
+    position: "FRONT‑END DEVELOPER",
+    dates: "Dec 2022 – Current",
+    descriptions: [
+      "Developed dynamic user interfaces for cryptocurrency and trading platforms with ReactJS and Next.js, converting Figma designs into SEO-friendly websites",
+      "Applied Tailwind CSS for consistent, scalable design across devices and enhanced user experience with complex animations using Framer Motion.",
+      "Utilized web3 libraries like Wagmi, Blocknative, and Moralis for token and block transaction fetching, as well as wallet connection.",
     ],
   },
   {
