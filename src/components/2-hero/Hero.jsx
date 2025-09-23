@@ -69,7 +69,7 @@ const Hero = () => {
           </div>
           <a
             className="mt-6"
-            href="Resume-mai-2025.pdf"
+            href="JassemSouey-resume.pdf"
             download="jassem-resume.pdf"
           >
             <NeonButton />
