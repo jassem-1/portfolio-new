@@ -7,7 +7,7 @@ const timelineData = [
   { date: "Jul 2023", text: "Esprit (intern)", endDate: "Aug 2023" },
   { date: "Jul 2024", text: "Algosama (intern)", endDate: "Aug 2024" },
   { date: "Aug 2024", text: "StableLabs", endDate: "Sep 2024" },
-  { date: "Feb 2025", text: "Itgrow (pfe)", endDate: "current" },
+  { date: "Feb 2025", text: "Itgrow (pfe)", endDate: "Jul 2025" },
 ];
 
 const Timeline = () => {
