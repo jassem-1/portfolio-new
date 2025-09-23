@@ -6,7 +6,7 @@ import GitHubContributions from "./Github";
 import NeonButton from "../button/MovingBorders";
 import Navbar from "../../components/1-header/Navbar";
 import Timeline from "./Timeline";
-
+import { GiDiploma } from "react-icons/gi";
 // Function to initialize gtag if not already defined
 const initializeGtag = () => {
   if (typeof window !== "undefined" && !window.gtag) {
@@ -76,11 +76,15 @@ const Hero = () => {
             Jassem Souey
           </h1>
           <p className="text-lg sm:text-2xl mt-2">Full Stack Developer</p>
-          <p className="text-sm sm:text-lg mt-2 text-start max-w-md text-gray-400">
+          <p className="text-sm sm:text-lg mt-2 text-start max-w-lg text-gray-400">
             Dedicated full-stack developer with over two years of experience,
             building innovative, scalable, and user-focused web applications
             with a passion for technological innovation and collaborative
             problem-solving.
+          </p>
+          <p className="flex items-center gap-2 text-xs xs:text-sm sm:text-lg mt-2 text-start max-w-lg text-gray-400">
+            <GiDiploma className="text-xl xs:text-3xl text-white" />
+            Holds an Engineering degree in Computer Sciences.
           </p>
           <div className="all-icons flex gap-4 mt-4 sm:scale-100 scale-75 sm:-ml-0 -ml-2">
             <a
