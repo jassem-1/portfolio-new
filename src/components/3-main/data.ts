@@ -15,6 +15,7 @@ import markitup from "../../../src/assets/images/markitup.png";
 import donkey from "../../assets/images/golden-donkey.png";
 import esprit from "../../../src/assets/images/esprit.png";
 import flow from "../../../src/assets/images/flow.png";
+import myco from "../../../src/assets/images/myco.png";
 interface ProjectData {
   title: string;
   description: string;
@@ -25,6 +26,24 @@ interface ProjectData {
 }
 
 export const projectsData: ProjectData[] = [
+  {
+    title: "MYCO - Internship Management SaaS",
+    description:
+      "An AI-powered SaaS platform for internship management, featuring automated task and sprint generation, intern recommendations, and quiz creation from resumes using LLMs with schema validation and human-in-the-loop supervision. Includes role-based authentication, company profile setup, project-sprint-task lifecycle, performance dashboards, and real-time communication with WebSocket.",
+    tags: [
+      "React (Vite)",
+      "Spring Boot",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "WebSockets",
+      "Firebase",
+      "Flyway",
+    ],
+    imageUrl: myco, // Using esprit image as a placeholder; replace with MYCO-specific image if available
+    videoUrl:
+      "https://res.cloudinary.com/dbhrjqj53/video/upload/v1758647651/DemoMyco_w4anqg.mp4", // Using esprit video as placeholder; replace with MYCO video if available
+  },
   {
     title: "DeFi Platform",
     description:
