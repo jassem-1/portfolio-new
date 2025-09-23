@@ -7,6 +7,7 @@ import NeonButton from "../button/MovingBorders";
 import Navbar from "../../components/1-header/Navbar";
 import Timeline from "./Timeline";
 import { GiDiploma } from "react-icons/gi";
+import me from "../../assets/images/me.jpg";
 // Function to initialize gtag if not already defined
 const initializeGtag = () => {
   if (typeof window !== "undefined" && !window.gtag) {
@@ -72,10 +73,19 @@ const Hero = () => {
       <Navbar />
       <div className="flex flex-col lg:flex-row w-full pt-40 min-h-screen justify-start">
         <div className="flex flex-col w-full items-start justify-center pt-4 z-40 gap-3 lg:gap-6">
-          <h1 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-100">
-            Jassem Souey
-          </h1>
-          <p className="text-lg sm:text-2xl mt-2">Full Stack Developer</p>
+          <div className="flex w-full items-center justify-between gap-6 max-w-md pr-8">
+            <div className="flex flex-col items-start">
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-100">
+                Jassem Souey
+              </h1>
+              <p className="text-lg sm:text-2xl mt-2">Full Stack Developer</p>
+            </div>
+            <img
+              src={me}
+              alt="Jassem Souey"
+              className="rounded-full w-12 xs:w-20 h-12 xs:h-20 object-cover"
+            />
+          </div>
           <p className="text-sm sm:text-lg mt-2 text-start max-w-lg text-gray-400">
             Dedicated full-stack developer with over two years of experience,
             building innovative, scalable, and user-focused web applications
@@ -110,7 +120,7 @@ const Hero = () => {
               onClick={handleClick}
               className="flex gap-2 text-gray-400 items-center"
             >
-              <span className="text-sm sm:text-xl">+216 55392530</span>
+              <span className="text-sm sm:text-xl">+216 93 372 834</span>
               <FaWhatsapp className="text-xl" />
             </a>
           </div>
