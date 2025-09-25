@@ -25,21 +25,18 @@ const Hero = () => {
   }, []);
 
   const handleClick = () => {
-    const isMobile = /Mobi/i.test(navigator.userAgent);
-    const phoneNumber = "+216 55392530";
-    if (isMobile) {
-      window.location.href = `tel:${phoneNumber}`;
-    } else {
-      window.open(
-        `https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}`,
-        "_blank"
-      );
-    }
+    const phoneNumber = "+216 93372834";
+
+    window.open(
+      `https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}`,
+      "_blank"
+    );
+
     // Track phone/WhatsApp click with custom event name
     if (typeof gtag === "function") {
       gtag("event", "contact_phone_click", {
         event_category: "Contact",
-        event_label: isMobile ? "Phone Call" : "WhatsApp",
+        event_label: "WhatsApp",
         custom_parameter_1: phoneNumber,
       });
     }
