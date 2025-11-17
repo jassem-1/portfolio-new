@@ -123,7 +123,7 @@ const Hero = () => {
           </div>
           <a
             className="mt-6"
-            href="jassem-souey-resume"
+            href="jassem-souey-resume.pdf"
             download="jassem-resume.pdf"
             onClick={handleResumeDownload}
           >
